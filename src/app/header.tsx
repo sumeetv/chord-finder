@@ -1,8 +1,8 @@
 import React from 'react';
 
-import { Center, Flex, Heading, Spacer } from '@chakra-ui/react';
+import { Center, Flex, Heading, Link, Spacer } from '@chakra-ui/react';
 
-const HeaderLink = (props: any) => {
+const LinkHeader = (props: any) => {
     return (
         <Center p='0.5rem' {...props} />
     );
@@ -12,23 +12,31 @@ const Header: React.FC = () => {
     return (
         <Center bg='chocolate' p='1.45rem' color='white'>
             <Flex w='100%' maxW='930px' >
-                <Heading size='2xl' bg='red'>
+                <Heading size='2xl'>
                     @sumeetv
                 </Heading>
-                <Spacer bg='gray' />
+                <Spacer/>
                 <Flex>
-                    <HeaderLink>
-                        About
-                    </HeaderLink>
-                    <HeaderLink>
-                        Companies
-                    </HeaderLink>
-                    <HeaderLink>
-                        Blog
-                    </HeaderLink>
-                    <HeaderLink>
-                        Projects
-                    </HeaderLink>
+                    <LinkHeader>
+                        <Link href='/'>
+                            About
+                        </Link>
+                    </LinkHeader>
+                    <LinkHeader>
+                        <Link href='/companies'>
+                            Companies
+                        </Link>
+                    </LinkHeader>
+                    <LinkHeader>
+                        <Link href='/blog'>
+                            Blog
+                        </Link>
+                    </LinkHeader>
+                    <LinkHeader>
+                        <Link href='/projects'>
+                            Projects
+                        </Link>
+                    </LinkHeader>
                 </Flex>
             </Flex>
         </Center>
