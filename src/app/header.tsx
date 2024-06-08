@@ -10,23 +10,23 @@ const HeaderLink = (props: any) => {
 
 const Header: React.FC = () => {
     return (
-        <Center bg='greenyellow' p='1.45rem'>
+        <Center bg='chocolate' p='1.45rem' color='white'>
             <Flex w='100%' maxW='930px' >
-                <Heading size='2xl' bg='tomato'>
+                <Heading size='2xl' bg='red'>
                     @sumeetv
                 </Heading>
                 <Spacer bg='gray' />
                 <Flex>
-                    <HeaderLink bg='mediumseagreen'>
+                    <HeaderLink>
                         About
                     </HeaderLink>
-                    <HeaderLink bg='lightgray'>
+                    <HeaderLink>
                         Companies
                     </HeaderLink>
-                    <HeaderLink bg='goldenrod'>
+                    <HeaderLink>
                         Blog
                     </HeaderLink>
-                    <HeaderLink bg='blueviolet'>
+                    <HeaderLink>
                         Projects
                     </HeaderLink>
                 </Flex>
