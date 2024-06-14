@@ -99,8 +99,8 @@ export default function Page() {
             <Heading>Testing companies page</Heading>
             <br />
             <Text>
-                These are companies I have had the privilege of working with either as an investor or advisor over the years.
-                Please feel free to reach out if you'd like to get in touch with any of them.
+                {`These are companies I have had the privilege of working with either as an investor or advisor over the years.
+                Please feel free to reach out if you'd like to get in touch with any of them.`}
             </Text>
             <br />
             {companyLinks}
