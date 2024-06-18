@@ -1,5 +1,6 @@
 import { marked } from 'marked';
 
+import BlogContent from './blog-content';
 import { getPostBySlug } from "@/lib/posts";
 
 export default async function Page({ params }: Params) {
@@ -15,15 +16,11 @@ export default async function Page({ params }: Params) {
 
 
     return (
-        <div>
-            <h1>
-                {post.title}
-            </h1>
-            <div>
-                {date.toLocaleDateString('en-US', options)}
-            </div>
-            <div dangerouslySetInnerHTML={{ __html: content}} />
-        </div>
+        <BlogContent
+            title={post.title}
+            date={post.date}
+            content={post.content}
+        />
     )
 }
 
