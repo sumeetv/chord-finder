@@ -29,7 +29,9 @@ export default function BlogContent(props: BlogContentProps) {
                 {date.toLocaleDateString('en-US', options)}
             </Text>
             <br />
-            <ReactMarkdown components={ChakraUIRenderer()} children={props.content} skipHtml />
+            <ReactMarkdown components={ChakraUIRenderer()} skipHtml>
+                {props.content}
+            </ReactMarkdown>
         </div>
     )
 }
