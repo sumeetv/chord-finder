@@ -18,6 +18,7 @@ export function getPostById(id) {
     content: matterResult.content,
     slug: matterResult.data.slug,
     date: matterResult.data.date,
+    title: matterResult.data.title,
   };
 }
 
@@ -39,6 +40,7 @@ export function getSortedPostsData() {
       id,
       slug: matterResult.data.slug,
       date: matterResult.data.date,
+      title: matterResult.data.title,
     };
   });
   // Sort posts by date
