@@ -68,6 +68,10 @@ const CompanyList: Company[] = [
         url: 'https://www.qawolf.com/',
     },
     {
+        name: 'Reins',
+        url: 'https://myreins.com/',
+    },
+    {
         name: 'Serif Health',
         url: 'https://www.serifhealth.com/',
     },

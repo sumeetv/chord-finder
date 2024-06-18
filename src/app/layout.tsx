@@ -5,6 +5,7 @@ import { Providers } from "./providers";
 import { Center } from '@chakra-ui/react';
 
 import Header from "./header";
+import React from "react";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -18,13 +19,19 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const divStyle: React.CSSProperties = {
+    maxWidth: '860px',
+  }
+
   return (
     <html lang="en">
       <body className={inter.className}>
         <Providers>
           <Header />
           <Center p='1.5em'>
-              <main>{children}</main>
+              <div style={divStyle}>
+                <main>{children}</main>
+              </div>
           </Center>
         </Providers>
       </body>
