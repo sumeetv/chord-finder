@@ -4,9 +4,9 @@ import matter from 'gray-matter';
 
 const postsDirectory = path.join(process.cwd(), 'src/posts');
 
-export function getPostById(id) {
+export function getPostBySlug(slug) {
   // Read markdown file as string
-  const fullPath = path.join(postsDirectory, id + '.md');
+  const fullPath = path.join(postsDirectory, slug + '.md');
   const fileContents = fs.readFileSync(fullPath, 'utf8');
 
   // Use gray-matter to parse the post metadata section
@@ -14,7 +14,7 @@ export function getPostById(id) {
 
   // Combine the data with the id
   return {
-    id,
+    id: slug,
     content: matterResult.content,
     slug: matterResult.data.slug,
     date: matterResult.data.date,

@@ -5,12 +5,13 @@ export default function Page() {
     const postsData = getSortedPostsData()
     const postsLinks = postsData.map((postData) => (
         <li key={postData.id}>
-            {postData.slug}
+            <Link href={`/blog/${postData.slug}`}>
+                {postData.title}
+            </Link>
         </li>
     ));
     return (
         <div>
-            <h1>Testing blog page</h1>
             <div>{postsLinks}</div>
         </div>
     )
