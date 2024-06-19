@@ -1,6 +1,6 @@
-import NOTES from "../../utils/notes"
+import NOTES from "@/lib/chord-finder/notes"
 
-import { SELECT_SCALE_NOTE, DESELECT_SCALE_NOTE } from "../action-types"
+import { SELECT_SCALE_NOTE, DESELECT_SCALE_NOTE } from "@/redux/action-types"
 
 let initial_state = [];
 initial_state.length = NOTES.length;

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
 
-import { selectNote, deselectNote } from "../redux/actions";
+import { selectNote, deselectNote } from "@/redux/actions";
 
 import * as FretCellTypes from "./fret-cell-types"
 import "./fret-cell.css"

@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
-import { Button, FormSelect, Modal, ModalBody, ModalHeader } from "shards-react";
 
-import NOTES from "../utils/notes";
-import { FindPotentialScales, NotesForScale, ScalesForNotes } from "../utils/scale";
-import TUNINGS from "../utils/tunings";
+import { Button, Modal, ModalBody, ModalContent, ModalHeader, ModalOverlay, Select } from "@chakra-ui/react";
 
-import { selectScaleNote, deselectScaleNote } from "../redux/actions";
+import NOTES from "@/lib/chord-finder/notes";
+import { FindPotentialScales, NotesForScale, ScalesForNotes } from "@/lib/chord-finder/scale";
+import TUNINGS from "@/lib/chord-finder/tunings";
+
+import { selectScaleNote, deselectScaleNote } from "@/redux/actions";
 
 import ScaleSelector from "./scale-selector";
 import Fretboard from "./fretboard";
@@ -55,9 +56,9 @@ const ScaleBoard = ({ currentScale, selectedScaleNotes, selectScaleNote, deselec
             <div className="fretboard-header">
                 <ScaleSelector />
                 <div className="fretboard-tuning">
-                    <FormSelect onChange={(event) => setCurrentTuning(event.target.value)}>
+                    <Select onChange={(event) => setCurrentTuning(event.target.value)}>
                         {tunings}
-                    </FormSelect>
+                    </Select>
                 </div>
             </div>
             <Fretboard
@@ -68,15 +69,18 @@ const ScaleBoard = ({ currentScale, selectedScaleNotes, selectScaleNote, deselec
             />
             <div>
                 <Button onClick={ToggleModal} size="sm">View potential scales</Button>
-                <Modal open={isModalOpen} toggle={ToggleModal}>
-                    <ModalHeader>
-                        Potential Scales
-                    </ModalHeader>
-                    <ModalBody>
-                        <div className="fretboard-modal">
-                            {potentialScalesList}
-                        </div>
-                    </ModalBody>
+                <Modal isOpen={isModalOpen} onClose={ToggleModal}>
+                    <ModalOverlay />
+                    <ModalContent>
+                        <ModalHeader>
+                            Potential Scales
+                        </ModalHeader>
+                        <ModalBody>
+                            <div className="fretboard-modal">
+                                {potentialScalesList}
+                            </div>
+                        </ModalBody>
+                    </ModalContent>
                 </Modal>
             </div>
             <p>

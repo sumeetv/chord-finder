@@ -1,17 +1,17 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
-import { Button, FormSelect, Modal, ModalBody, ModalHeader } from "shards-react";
 
-import { ChordsForNotes, FindPotentialChords, NotesForChord } from "../utils/chord";
-import NOTES from "../utils/notes";
-import TUNINGS from "../utils/tunings";
+import { ChordsForNotes, FindPotentialChords, NotesForChord } from "@/lib/chord-finder/chord";
+import NOTES from "@/lib/chord-finder/notes";
+import TUNINGS from "@/lib/chord-finder/tunings";
 
-import { selectChordNote, deselectChordNote } from "../redux/actions";
+import { selectChordNote, deselectChordNote } from "@/redux/actions";
 
 import ChordSelector from "./chord-selector";
 import Fretboard from "./fretboard";
 
 import "./fretboard.css";
+import { Button, Modal, ModalBody, ModalContent, ModalHeader, ModalOverlay, Select } from "@chakra-ui/react";
 
 const ChordBoard = ({ currentChord, selectedChordNotes, selectChordNote, deselectChordNote }) => {
     const defaultTuning = Object.keys(TUNINGS)[0];
@@ -55,9 +55,9 @@ const ChordBoard = ({ currentChord, selectedChordNotes, selectChordNote, deselec
             <div className="fretboard-header">
                 <ChordSelector />
                 <div className="fretboard-tuning">
-                    <FormSelect onChange={(event) => setCurrentTuning(event.target.value)}>
+                    <Select onChange={(event) => setCurrentTuning(event.target.value)}>
                         {tunings}
-                    </FormSelect>
+                    </Select>
                 </div>
             </div>
             <Fretboard
@@ -68,15 +68,18 @@ const ChordBoard = ({ currentChord, selectedChordNotes, selectChordNote, deselec
             />
             <div>
                 <Button onClick={ToggleModal} size="sm">View potential chords</Button>
-                <Modal open={isModalOpen} toggle={ToggleModal}>
-                    <ModalHeader>
-                        Potential Chords
-                    </ModalHeader>
-                    <ModalBody>
-                        <div className="fretboard-modal">
-                            {potentialChordsList}
-                        </div>
-                    </ModalBody>
+                <Modal isOpen={isModalOpen} onClose={ToggleModal}>
+                    <ModalOverlay />
+                    <ModalContent>
+                        <ModalHeader>
+                            Potential Chords
+                        </ModalHeader>
+                        <ModalBody>
+                            <div className="fretboard-modal">
+                                {potentialChordsList}
+                            </div>
+                        </ModalBody>
+                    </ModalContent>
                 </Modal>
             </div>
             <p>

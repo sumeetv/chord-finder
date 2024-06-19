@@ -1,9 +1,9 @@
 import React from "react";
 import { connect } from "react-redux";
 
-import { SCALES } from "../utils/scale";
+import { SCALES } from "@/lib/chord-finder/scale";
 
-import { clearScaleSelection, selectScaleRoot, selectScaleType } from "../redux/actions";
+import { clearScaleSelection, selectScaleRoot, selectScaleType } from "@/redux/actions";
 
 import IntervalSelector from "./interval-selector";
 

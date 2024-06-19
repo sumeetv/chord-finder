@@ -1,7 +1,7 @@
 import React from "react";
-import { Button } from "shards-react";
+import { Button } from "@chakra-ui/react";
 
-import NOTES from "../utils/notes";
+import NOTES from "@/lib/chord-finder/notes";
 
 import "./interval-selector.css";
 
