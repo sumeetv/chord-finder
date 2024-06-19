@@ -1,8 +1,9 @@
 import React from "react";
 import { connect } from "react-redux";
 
-import { CHORDS } from "@/lib/chord-finder/chord";
+import { Text } from "@chakra-ui/react";
 
+import { CHORDS } from "@/lib/chord-finder/chord";
 import { clearChordSelection, selectChordRoot, selectChordType } from "@/redux/actions";
 
 import IntervalSelector from "./interval-selector";
@@ -28,9 +29,9 @@ const ChordSelector = ({
                 clearSelection={clearChordSelection}
                 clearSelectionText={"Clear Chord"}
             />
-            <p>
+            <Text>
                 Currently highlighting: {current_highlight}
-            </p>
+            </Text>
         </div>
     );
 };

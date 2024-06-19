@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
 
+import { Button, Modal, ModalBody, ModalContent, ModalHeader, ModalOverlay, Select } from "@chakra-ui/react";
+
 import { ChordsForNotes, FindPotentialChords, NotesForChord } from "@/lib/chord-finder/chord";
 import NOTES from "@/lib/chord-finder/notes";
 import TUNINGS from "@/lib/chord-finder/tunings";
@@ -11,7 +13,6 @@ import ChordSelector from "./chord-selector";
 import Fretboard from "./fretboard";
 
 import "./fretboard.css";
-import { Button, Modal, ModalBody, ModalContent, ModalHeader, ModalOverlay, Select } from "@chakra-ui/react";
 
 const ChordBoard = ({ currentChord, selectedChordNotes, selectChordNote, deselectChordNote }) => {
     const defaultTuning = Object.keys(TUNINGS)[0];

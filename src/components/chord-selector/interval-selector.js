@@ -1,5 +1,5 @@
 import React from "react";
-import { Button } from "@chakra-ui/react";
+import { Button, Select } from "@chakra-ui/react";
 
 import NOTES from "@/lib/chord-finder/notes";
 
@@ -46,22 +46,22 @@ const IntervalSelector = ({
     return(
         <div className="interval-selector-container">
             <div className="interval-note-selector">
-            <select
+            <Select
                 className="custom-select"
                 value={currentRoot}
                 onChange={(event) => selectRoot(event.target.value)}
             >
                 {noteSelectors}
-            </select>
+            </Select>
             </div>
             <div className="interval-type-selector">
-                <select
+                <Select
                     className="custom-select"
                     value={currentInterval}
                     onChange={(event) => selectType(event.target.value)}
                 >
                     {intervalSelectors}
-                </select>
+                </Select>
             </div>
             <Button type="reset" onClick={() => clearSelection()}>
                 {clearSelectionText}

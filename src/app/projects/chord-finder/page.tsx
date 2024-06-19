@@ -8,19 +8,26 @@ import ScaleBoard from "@/components/chord-selector/scale-board";
 
 import store from "@/redux/store";
 import "./chord-finder.css";
+import { Heading, Text } from "@chakra-ui/react";
 
 const ChordFinderPage = () => {
     return (
         <Provider store={store}>
-            <h1>Chord Finder</h1>
-            <p>
+            <Heading>Chord Finder</Heading>
+            <Text>
                 Select frets on either fretboard to see what chords or scales match your selection.
                 You can also select a chord or scale from the dropdowns to highlight all corresponding
                 notes.
-            </p>
-            <h4>Chord Selector</h4>
+            </Text>
+            <br />
+            <Heading size="md">
+                Chord Selector
+            </Heading>
             <ChordBoard />
-            <h4>Scale Selector</h4>
+            <br />
+            <Heading size="md">
+                Scale Selector
+            </Heading>
             <ScaleBoard />
         </Provider>
     );
