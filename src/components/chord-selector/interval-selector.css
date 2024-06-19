@@ -1,0 +1,12 @@
+.interval-note-selector {
+    width: 80px;
+}
+
+.interval-type-selector {
+    width: 200px;
+}
+
+.interval-selector-container {
+    display: flex;
+    flex-direction: row;
+}
