@@ -1,0 +1,32 @@
+.fret-cell {
+    text-align: center;
+    width: 44px;
+    margin: 3px;
+    background-color: bisque;
+}
+
+.fret-cell-root {
+    text-align: center;
+    width: 44px;
+    margin: 3px;
+}
+
+.fret-cell-highlighted {
+    text-align: center;
+    width: 44px;
+    margin: 3px;
+    background-color: turquoise;
+}
+
+.fret-cell-selected {
+    text-align: center;
+    width: 44px;
+    margin: 3px;
+    background-color: red;
+}
+
+.fret-cell-disabled {
+    text-align: center;
+    width: 44px;
+    margin: 3px;
+}
