@@ -2,7 +2,7 @@
     text-align: center;
     width: 44px;
     margin: 3px;
-    background-color: #FEEBC8;
+    background-color: var(--chakra-colors-orange-100);
 }
 
 .fret-cell-root {
@@ -15,14 +15,14 @@
     text-align: center;
     width: 44px;
     margin: 3px;
-    background-color: #BEE3F8;
+    background-color: var(--chakra-colors-red-100);
 }
 
 .fret-cell-selected {
     text-align: center;
     width: 44px;
     margin: 3px;
-    background-color: #FED7D7;
+    background-color: var(--chakra-colors-blue-100);
 }
 
 .fret-cell-disabled {

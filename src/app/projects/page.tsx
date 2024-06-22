@@ -11,15 +11,13 @@ export default function Page() {
             </Text>
             <Link href='/projects/chord-finder'>
                 <Card style={{ maxWidth: `800px` }}>
-                    <CardHeader>
-                        <Text>Chord Finder</Text>
-                    </CardHeader>
                     <CardBody>
+                        <Heading size={'lg'}>Chord Finder</Heading>
                         <Text>
                             A tool to help guitar players explore chords and scales
                         </Text>
                     </CardBody>
-                    <Image src={'/chord_selector_preview.png'} style={{ paddingLeft: `1.875rem`, paddingRight: `1.875rem` }} />
+                    <Image src={'/chord-selector-preview.png'} style={{ paddingLeft: `1.875rem`, paddingRight: `1.875rem` }} />
                 </Card>
             </Link>
         </div>
