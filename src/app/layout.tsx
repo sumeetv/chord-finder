@@ -1,13 +1,12 @@
+import React from "react";
+
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import { Providers } from "./providers";
 
 import { Center } from '@chakra-ui/react';
 
+import { defaultFont } from './font';
 import Header from "./header";
-import React from "react";
-
-const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "@sumeetv",
@@ -25,7 +24,7 @@ export default function RootLayout({
 
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className={defaultFont.className}>
         <Providers>
           <Header />
           <Center p='1.5em'>
