@@ -2,7 +2,7 @@
     text-align: center;
     width: 44px;
     margin: 3px;
-    background-color: bisque;
+    background-color: #FEEBC8;
 }
 
 .fret-cell-root {
@@ -15,14 +15,14 @@
     text-align: center;
     width: 44px;
     margin: 3px;
-    background-color: turquoise;
+    background-color: #BEE3F8;
 }
 
 .fret-cell-selected {
     text-align: center;
     width: 44px;
     margin: 3px;
-    background-color: red;
+    background-color: #FED7D7;
 }
 
 .fret-cell-disabled {
