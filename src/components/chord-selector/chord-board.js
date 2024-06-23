@@ -69,15 +69,11 @@ const ChordBoard = ({
                     </Select>
                 </div>
             </div>
-            <Fretboard
-                highlightedNotes={highlighted_notes}
-                currentTuning={currentTuning}
-                onSelectNote={selectChordNote}
-                onDeselectNote={deselectChordNote}
-                layout={layout}
-            />
+            <p>
+                Selected chord(s): {currentChordsText}
+            </p>
             <div>
-                <Button onClick={ToggleModal} size="sm">View potential chords</Button>
+                <Button onClick={ToggleModal} size="xs">View potential chords</Button>
                 <Modal isOpen={isModalOpen} onClose={ToggleModal}>
                     <ModalOverlay />
                     <ModalContent>
@@ -92,9 +88,13 @@ const ChordBoard = ({
                     </ModalContent>
                 </Modal>
             </div>
-            <p>
-                Selected chord(s): {currentChordsText}
-            </p>
+            <Fretboard
+                highlightedNotes={highlighted_notes}
+                currentTuning={currentTuning}
+                onSelectNote={selectChordNote}
+                onDeselectNote={deselectChordNote}
+                layout={layout}
+            />
         </div>
     );
 }

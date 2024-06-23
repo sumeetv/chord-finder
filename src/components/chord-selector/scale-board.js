@@ -69,15 +69,11 @@ const ScaleBoard = ({
                     </Select>
                 </div>
             </div>
-            <Fretboard
-                highlightedNotes={highlightedNotes}
-                currentTuning={currentTuning}
-                onSelectNote={selectScaleNote}
-                onDeselectNote={deselectScaleNote}
-                layout={layout}
-            />
+            <p>
+                Selected scale(s): {currentScalesText}
+            </p>
             <div>
-                <Button onClick={ToggleModal} size="sm">View potential scales</Button>
+                <Button onClick={ToggleModal} size="xs">View potential scales</Button>
                 <Modal isOpen={isModalOpen} onClose={ToggleModal}>
                     <ModalOverlay />
                     <ModalContent>
@@ -92,9 +88,13 @@ const ScaleBoard = ({
                     </ModalContent>
                 </Modal>
             </div>
-            <p>
-                Selected scale(s): {currentScalesText}
-            </p>
+            <Fretboard
+                highlightedNotes={highlightedNotes}
+                currentTuning={currentTuning}
+                onSelectNote={selectScaleNote}
+                onDeselectNote={deselectScaleNote}
+                layout={layout}
+            />
         </div>
     );
 }
