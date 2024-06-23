@@ -1,5 +1,5 @@
 const TUNINGS = {
-    'Standard': ['E', 'A', 'D', 'G', 'B', 'E'],
+    'Standard Tuning': ['E', 'A', 'D', 'G', 'B', 'E'],
     'Drop D': ['D', 'A', 'D', 'G', 'B', 'E'],
     'DADGAD': ['D', 'A', 'D', 'G', 'A', 'D'],
     'Double Drop D': ['D', 'A', 'D', 'G', 'B', 'D'],

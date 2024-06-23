@@ -8,9 +8,14 @@ import ScaleBoard from "@/components/chord-selector/scale-board";
 
 import store from "@/redux/store";
 import "./chord-finder.css";
-import { Heading, Text } from "@chakra-ui/react";
+import { Heading, Text, useBreakpointValue } from "@chakra-ui/react";
 
 const ChordFinderPage = () => {
+    const layout = useBreakpointValue({
+        base: "vertical",
+        md: "horizontal",
+    });
+
     return (
         <Provider store={store}>
             <Heading>Chord Finder</Heading>
@@ -23,12 +28,12 @@ const ChordFinderPage = () => {
             <Heading size="md">
                 Chord Selector
             </Heading>
-            <ChordBoard />
+            <ChordBoard layout={layout} />
             <br />
             <Heading size="md">
                 Scale Selector
             </Heading>
-            <ScaleBoard />
+            <ScaleBoard layout={layout} />
         </Provider>
     );
 };

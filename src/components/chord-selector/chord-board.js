@@ -14,7 +14,13 @@ import Fretboard from "./fretboard";
 
 import "./fretboard.css";
 
-const ChordBoard = ({ currentChord, selectedChordNotes, selectChordNote, deselectChordNote }) => {
+const ChordBoard = ({
+    currentChord,
+    selectedChordNotes,
+    selectChordNote,
+    deselectChordNote,
+    layout,
+}) => {
     const defaultTuning = Object.keys(TUNINGS)[0];
     const [currentTuning, setCurrentTuning] = useState(defaultTuning);
     const [isModalOpen, setModalVisibility] = useState(false);
@@ -22,7 +28,7 @@ const ChordBoard = ({ currentChord, selectedChordNotes, selectChordNote, deselec
     let tunings = [];
     for (let tuning_key in TUNINGS) {
         tunings.push(
-            <option value={tuning_key}>
+            <option value={tuning_key} key={tuning_key}>
                 {tuning_key}
             </option>
         )
@@ -43,7 +49,9 @@ const ChordBoard = ({ currentChord, selectedChordNotes, selectChordNote, deselec
     const potentialChordsList = [];
     for (const idx in potentialChords) {
         potentialChordsList.push(
-            <div>{potentialChords[idx]}</div>
+            <div key={idx}>
+                {potentialChords[idx]}
+            </div>
         );
     }
 
@@ -61,14 +69,11 @@ const ChordBoard = ({ currentChord, selectedChordNotes, selectChordNote, deselec
                     </Select>
                 </div>
             </div>
-            <Fretboard
-                highlightedNotes={highlighted_notes}
-                currentTuning={currentTuning}
-                onSelectNote={selectChordNote}
-                onDeselectNote={deselectChordNote}
-            />
+            <p>
+                Selected chord(s): {currentChordsText}
+            </p>
             <div>
-                <Button onClick={ToggleModal} size="sm">View potential chords</Button>
+                <Button onClick={ToggleModal} size="xs">View potential chords</Button>
                 <Modal isOpen={isModalOpen} onClose={ToggleModal}>
                     <ModalOverlay />
                     <ModalContent>
@@ -83,9 +88,13 @@ const ChordBoard = ({ currentChord, selectedChordNotes, selectChordNote, deselec
                     </ModalContent>
                 </Modal>
             </div>
-            <p>
-                Selected chord(s): {currentChordsText}
-            </p>
+            <Fretboard
+                highlightedNotes={highlighted_notes}
+                currentTuning={currentTuning}
+                onSelectNote={selectChordNote}
+                onDeselectNote={deselectChordNote}
+                layout={layout}
+            />
         </div>
     );
 }

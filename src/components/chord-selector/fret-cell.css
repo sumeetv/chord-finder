@@ -2,6 +2,7 @@
     text-align: center;
     width: 44px;
     margin: 3px;
+    height: 24px;
     background-color: var(--chakra-colors-orange-100);
 }
 
@@ -9,12 +10,14 @@
     text-align: center;
     width: 44px;
     margin: 3px;
+    height: 24px;
 }
 
 .fret-cell-highlighted {
     text-align: center;
     width: 44px;
     margin: 3px;
+    height: 24px;
     background-color: var(--chakra-colors-red-100);
 }
 
@@ -22,6 +25,7 @@
     text-align: center;
     width: 44px;
     margin: 3px;
+    height: 24px;
     background-color: var(--chakra-colors-blue-100);
 }
 
@@ -29,4 +33,5 @@
     text-align: center;
     width: 44px;
     margin: 3px;
+    height: 24px;
 }

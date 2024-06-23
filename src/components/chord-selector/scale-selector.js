@@ -18,20 +18,15 @@ const ScaleSelector = ({
         currentScale.scale_root + " " + currentScale.scale_type;
 
     return(
-        <div>
-            <IntervalSelector
-                currentRoot={currentScale.scale_root}
-                currentInterval={currentScale.scale_type}
-                validIntervals={SCALES}
-                selectRoot={selectScaleRoot}
-                selectType={selectScaleType}
-                clearSelection={clearScaleSelection}
-                clearSelectionText={"Clear Scale"}
-            />
-            <p>
-                Currently highlighting: {current_highlight}
-            </p>
-        </div>
+        <IntervalSelector
+            currentRoot={currentScale.scale_root}
+            currentInterval={currentScale.scale_type}
+            validIntervals={SCALES}
+            selectRoot={selectScaleRoot}
+            selectType={selectScaleType}
+            clearSelection={clearScaleSelection}
+            clearSelectionText={"Clear Scale"}
+        />
     );
 };
 

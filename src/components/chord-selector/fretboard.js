@@ -4,18 +4,26 @@ import NOTES from "@/lib/chord-finder/notes";
 import TUNINGS from "@/lib/chord-finder/tunings";
 
 import FretCell from "@/components/chord-selector/fret-cell";
-import * as FretCellTypes from "@/components/chord-selector/fret-cell-types";
+import FretCellTypes from "@/components/chord-selector/fret-cell-types";
+import { Box, Flex } from "@chakra-ui/react";
 
 const NUM_FRETS = 15;
 const FRET_MARKERS = [3, 5, 7, 10, 12, 15];
 
-const GuitarString = ({ base_note_idx, num_frets, highlighted_notes, onSelectNote, onDeselectNote }) => {
+const GuitarString = ({
+    base_note_idx,
+    num_frets,
+    highlighted_notes,
+    onSelectNote,
+    onDeselectNote,
+    stringDirection,
+}) => {
     let output = [];
 
     for (let idx = 0; idx < num_frets; idx++) {
         const cur_note_idx = (base_note_idx + idx) % NOTES.length;
 
-        let cell_type = FretCellTypes.Normal;
+        let cell_type = FretCellTypes.NORMAL;
         if (highlighted_notes[cur_note_idx] > 0) {
             cell_type = FretCellTypes.HIGHLIGHTED;
         } else if (idx === 0) {
@@ -34,14 +42,14 @@ const GuitarString = ({ base_note_idx, num_frets, highlighted_notes, onSelectNot
         );
     }
     return (
-        <div className="guitar-string">
+        <Flex className="guitar-string" direction={stringDirection}>
             {output}
-        </div>
+        </Flex>
     );
 };
 
 // Generate a row of fret cells that display fret markers for reference
-const MarkerRow = () => {
+const MarkerRow = (stringDirection) => {
     let row = [];
     for (let idx = 0; idx < NUM_FRETS; idx++) {
         const visible_note = (FRET_MARKERS.indexOf(idx) === -1) ?
@@ -56,13 +64,33 @@ const MarkerRow = () => {
         )
     }
     return (
-        <div className="guitar-string">
+        <Flex className="guitar-string" direction={stringDirection}>
             {row}
-        </div>
+        </Flex>
     );
 }
 
-const Fretboard = ({ highlightedNotes, currentTuning, onSelectNote, onDeselectNote }) => {
+const Fretboard = ({
+    highlightedNotes,
+    currentTuning,
+    onSelectNote,
+    onDeselectNote,
+    layout,
+}) => {
+    let boardDirection, stringDirection;
+    if (layout === "vertical")
+    {
+        boardDirection = "row";
+        stringDirection = "column";
+    } else if (layout === "horizontal") {
+        boardDirection = "column";
+        stringDirection = "row";
+    } else {
+        console.warn("Invalid layout for fretboard");
+        boardDirection = "column";
+        stringDirection = "row";
+    }
+
     let strings = [];
     const tuning_deltas = TUNINGS[currentTuning];
     for (let idx = tuning_deltas.length - 1; idx >= 0; idx--) {
@@ -74,15 +102,21 @@ const Fretboard = ({ highlightedNotes, currentTuning, onSelectNote, onDeselectNo
                 highlighted_notes={highlightedNotes}
                 onSelectNote={onSelectNote}
                 onDeselectNote={onDeselectNote}
+                stringDirection={stringDirection}
             />
         );
     }
 
+    if (layout === "vertical")
+        strings = strings.reverse();
+
     return (
-        <div>
-            {MarkerRow()}
-            {strings}
-        </div>
+        <Box>
+            <Flex direction={boardDirection}>
+                {MarkerRow(stringDirection)}
+                {strings}
+            </Flex>
+        </Box>
     );
 };
 

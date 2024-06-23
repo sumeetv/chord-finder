@@ -19,20 +19,15 @@ const ChordSelector = ({
         currentChord.chord_root + " " + currentChord.chord_type;
 
     return(
-        <div>
-            <IntervalSelector
-                currentRoot={currentChord.chord_root}
-                currentInterval={currentChord.chord_type}
-                validIntervals={CHORDS}
-                selectRoot={selectChordRoot}
-                selectType={selectChordType}
-                clearSelection={clearChordSelection}
-                clearSelectionText={"Clear Chord"}
-            />
-            <Text>
-                Currently highlighting: {current_highlight}
-            </Text>
-        </div>
+        <IntervalSelector
+            currentRoot={currentChord.chord_root}
+            currentInterval={currentChord.chord_type}
+            validIntervals={CHORDS}
+            selectRoot={selectChordRoot}
+            selectType={selectChordType}
+            clearSelection={clearChordSelection}
+            clearSelectionText={"Clear Chord"}
+        />
     );
 };
 

@@ -14,7 +14,13 @@ import Fretboard from "./fretboard";
 
 import "./fretboard.css";
 
-const ScaleBoard = ({ currentScale, selectedScaleNotes, selectScaleNote, deselectScaleNote }) => {
+const ScaleBoard = ({
+    currentScale,
+    selectedScaleNotes,
+    selectScaleNote,
+    deselectScaleNote,
+    layout,
+}) => {
     const defaultTuning = Object.keys(TUNINGS)[0];
     const [currentTuning, setCurrentTuning] = useState(defaultTuning);
     const [isModalOpen, setModalVisibility] = useState(false);
@@ -22,7 +28,7 @@ const ScaleBoard = ({ currentScale, selectedScaleNotes, selectScaleNote, deselec
     let tunings = [];
     for (let tuningKey in TUNINGS) {
         tunings.push(
-            <option value={tuningKey}>
+            <option value={tuningKey} key={tuningKey}>
                 {tuningKey}
             </option>
         )
@@ -43,7 +49,9 @@ const ScaleBoard = ({ currentScale, selectedScaleNotes, selectScaleNote, deselec
     const potentialScalesList = [];
     for (const idx in potentialScales) {
         potentialScalesList.push(
-            <div>{potentialScales[idx]}</div>
+            <div key={idx}>
+                {potentialScales[idx]}
+            </div>
         );
     }
 
@@ -61,14 +69,11 @@ const ScaleBoard = ({ currentScale, selectedScaleNotes, selectScaleNote, deselec
                     </Select>
                 </div>
             </div>
-            <Fretboard
-                highlightedNotes={highlightedNotes}
-                currentTuning={currentTuning}
-                onSelectNote={selectScaleNote}
-                onDeselectNote={deselectScaleNote}
-            />
+            <p>
+                Selected scale(s): {currentScalesText}
+            </p>
             <div>
-                <Button onClick={ToggleModal} size="sm">View potential scales</Button>
+                <Button onClick={ToggleModal} size="xs">View potential scales</Button>
                 <Modal isOpen={isModalOpen} onClose={ToggleModal}>
                     <ModalOverlay />
                     <ModalContent>
@@ -83,9 +88,13 @@ const ScaleBoard = ({ currentScale, selectedScaleNotes, selectScaleNote, deselec
                     </ModalContent>
                 </Modal>
             </div>
-            <p>
-                Selected scale(s): {currentScalesText}
-            </p>
+            <Fretboard
+                highlightedNotes={highlightedNotes}
+                currentTuning={currentTuning}
+                onSelectNote={selectScaleNote}
+                onDeselectNote={deselectScaleNote}
+                layout={layout}
+            />
         </div>
     );
 }

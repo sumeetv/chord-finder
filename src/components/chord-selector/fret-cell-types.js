@@ -1,4 +1,8 @@
-export const NORMAL = "NORMAL";
-export const ROOT = "ROOT";
-export const HIGHLIGHTED = "HIGHLIGHTED";
-export const DISABLED = "DISABLED";
+const FretCellTypes = {
+    NORMAL: "NORMAL",
+    ROOT: "ROOT",
+    HIGHLIGHTED: "HIGHLIGHTED",
+    DISABLED: "DISABLED",
+}
+
+export default FretCellTypes;
