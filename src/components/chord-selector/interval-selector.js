@@ -16,13 +16,13 @@ const IntervalSelector = ({
 }) => {
     let noteSelectors = [];
     noteSelectors.push(
-        <option value={-1}>
+        <option value={-1} key={"base-value"}>
             -
         </option>
     );
     for (const idx in NOTES) {
         noteSelectors.push(
-            <option value={NOTES[idx]}>
+            <option value={NOTES[idx]} key={idx}>
                 {NOTES[idx]}
             </option>
         );
@@ -30,14 +30,14 @@ const IntervalSelector = ({
 
     let intervalSelectors = [];
     intervalSelectors.push(
-        <option value={-1}>
+        <option value={-1} key={"base-value"}>
             -
         </option>
     );
     let intervalIdxKeys = Object.keys(validIntervals).sort();
     for (const idx in intervalIdxKeys) {
         intervalSelectors.push(
-            <option value={intervalIdxKeys[idx]}>
+            <option value={intervalIdxKeys[idx]} key={idx}>
                 {intervalIdxKeys[idx]}
             </option>
         )

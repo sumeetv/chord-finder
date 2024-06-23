@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 
 import { selectNote, deselectNote } from "@/redux/actions";
 
-import * as FretCellTypes from "./fret-cell-types"
+import FretCellTypes from "./fret-cell-types"
 import "./fret-cell.css"
 
 const FretCell = ({

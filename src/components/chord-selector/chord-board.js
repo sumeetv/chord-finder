@@ -22,7 +22,7 @@ const ChordBoard = ({ currentChord, selectedChordNotes, selectChordNote, deselec
     let tunings = [];
     for (let tuning_key in TUNINGS) {
         tunings.push(
-            <option value={tuning_key}>
+            <option value={tuning_key} key={tuning_key}>
                 {tuning_key}
             </option>
         )
@@ -43,7 +43,9 @@ const ChordBoard = ({ currentChord, selectedChordNotes, selectChordNote, deselec
     const potentialChordsList = [];
     for (const idx in potentialChords) {
         potentialChordsList.push(
-            <div>{potentialChords[idx]}</div>
+            <div key={idx}>
+                {potentialChords[idx]}
+            </div>
         );
     }
 

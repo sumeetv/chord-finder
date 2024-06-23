@@ -22,7 +22,7 @@ const ScaleBoard = ({ currentScale, selectedScaleNotes, selectScaleNote, deselec
     let tunings = [];
     for (let tuningKey in TUNINGS) {
         tunings.push(
-            <option value={tuningKey}>
+            <option value={tuningKey} key={tuningKey}>
                 {tuningKey}
             </option>
         )
@@ -43,7 +43,9 @@ const ScaleBoard = ({ currentScale, selectedScaleNotes, selectScaleNote, deselec
     const potentialScalesList = [];
     for (const idx in potentialScales) {
         potentialScalesList.push(
-            <div>{potentialScales[idx]}</div>
+            <div key={idx}>
+                {potentialScales[idx]}
+            </div>
         );
     }
 

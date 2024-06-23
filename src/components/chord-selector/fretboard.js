@@ -4,7 +4,7 @@ import NOTES from "@/lib/chord-finder/notes";
 import TUNINGS from "@/lib/chord-finder/tunings";
 
 import FretCell from "@/components/chord-selector/fret-cell";
-import * as FretCellTypes from "@/components/chord-selector/fret-cell-types";
+import FretCellTypes from "@/components/chord-selector/fret-cell-types";
 
 const NUM_FRETS = 15;
 const FRET_MARKERS = [3, 5, 7, 10, 12, 15];
@@ -15,7 +15,7 @@ const GuitarString = ({ base_note_idx, num_frets, highlighted_notes, onSelectNot
     for (let idx = 0; idx < num_frets; idx++) {
         const cur_note_idx = (base_note_idx + idx) % NOTES.length;
 
-        let cell_type = FretCellTypes.Normal;
+        let cell_type = FretCellTypes.NORMAL;
         if (highlighted_notes[cur_note_idx] > 0) {
             cell_type = FretCellTypes.HIGHLIGHTED;
         } else if (idx === 0) {
