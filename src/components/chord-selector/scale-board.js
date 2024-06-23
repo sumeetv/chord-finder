@@ -14,7 +14,13 @@ import Fretboard from "./fretboard";
 
 import "./fretboard.css";
 
-const ScaleBoard = ({ currentScale, selectedScaleNotes, selectScaleNote, deselectScaleNote }) => {
+const ScaleBoard = ({
+    currentScale,
+    selectedScaleNotes,
+    selectScaleNote,
+    deselectScaleNote,
+    layout,
+}) => {
     const defaultTuning = Object.keys(TUNINGS)[0];
     const [currentTuning, setCurrentTuning] = useState(defaultTuning);
     const [isModalOpen, setModalVisibility] = useState(false);
@@ -68,6 +74,7 @@ const ScaleBoard = ({ currentScale, selectedScaleNotes, selectScaleNote, deselec
                 currentTuning={currentTuning}
                 onSelectNote={selectScaleNote}
                 onDeselectNote={deselectScaleNote}
+                layout={layout}
             />
             <div>
                 <Button onClick={ToggleModal} size="sm">View potential scales</Button>

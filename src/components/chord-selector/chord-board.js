@@ -14,7 +14,13 @@ import Fretboard from "./fretboard";
 
 import "./fretboard.css";
 
-const ChordBoard = ({ currentChord, selectedChordNotes, selectChordNote, deselectChordNote }) => {
+const ChordBoard = ({
+    currentChord,
+    selectedChordNotes,
+    selectChordNote,
+    deselectChordNote,
+    layout,
+}) => {
     const defaultTuning = Object.keys(TUNINGS)[0];
     const [currentTuning, setCurrentTuning] = useState(defaultTuning);
     const [isModalOpen, setModalVisibility] = useState(false);
@@ -68,6 +74,7 @@ const ChordBoard = ({ currentChord, selectedChordNotes, selectChordNote, deselec
                 currentTuning={currentTuning}
                 onSelectNote={selectChordNote}
                 onDeselectNote={deselectChordNote}
+                layout={layout}
             />
             <div>
                 <Button onClick={ToggleModal} size="sm">View potential chords</Button>
