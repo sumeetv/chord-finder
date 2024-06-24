@@ -10,7 +10,7 @@ const LinkHeader = (props: any) => {
 
 const Header: React.FC = () => {
     return (
-        <Center bg='green.400' p='1.45rem' color='white'>
+        <Center bg='orange.400' p='1.45rem' color='white'>
             <Flex w='100%' maxW='930px' >
                 <Heading size='2xl'>
                     @sumeetv
