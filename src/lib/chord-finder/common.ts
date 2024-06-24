@@ -1,6 +1,7 @@
 import NOTES from "./notes";
 
-function RotateInterval(intervals, numRotations) {
+// Rotates a bit string (number) a certain number of times to get a shifted interval
+function RotateInterval(intervals: number, numRotations: number): number {
     const highestBit = 1 << NOTES.length;
     const mask = highestBit - 1;
 
@@ -10,11 +11,14 @@ function RotateInterval(intervals, numRotations) {
     return higherIntervals | lowerIntervals;
 }
 
-export function NotesForIntervals(rootNote, intervals) {
-    let returnedNotes = {};
+// Given an string rootNote and a bit string interval, return a dictionary of true booleans
+// keyed by note indices
+export function NotesForIntervals(rootNote: number, intervals: number): {[key: number]: boolean} {
+    let returnedNotes: {[key: number]: boolean} = {};
 
     for(let idx = 0; idx < NOTES.length; idx++) {
         if (intervals & (1 << idx)) {
+            console.log(idx, rootNote);
             const curNote = (idx + rootNote) % NOTES.length;
             returnedNotes[curNote] = true;
         }
@@ -23,7 +27,9 @@ export function NotesForIntervals(rootNote, intervals) {
     return returnedNotes;
 };
 
-export function GroupingsForNotes(selectedValues, validGroupings) {
+// Given a list of valid bit string groupings, a bit string of selected values, and a named key for each
+// grouping (e.g. a list of chords or scales), return all groupings that are sets of the selected values
+export function GroupingsForNotes(selectedValues: number[], validGroupings: {[key: string]: number}): string[] {
     if (!selectedValues) {
         return [];
     }
@@ -50,7 +56,7 @@ export function GroupingsForNotes(selectedValues, validGroupings) {
             continue;
         }
 
-        for (const rootNoteVal in NOTES) {
+        for (let rootNoteVal = 0; rootNoteVal < NOTES.length; rootNoteVal++) {
             const shiftedInterval = RotateInterval(currentGrouping, rootNoteVal);
             if ((shiftedInterval & selectedValuesCombined) === shiftedInterval) {
                 const rootNoteName = NOTES[rootNoteVal];
@@ -64,21 +70,22 @@ export function GroupingsForNotes(selectedValues, validGroupings) {
 };
 
 // Returns all elements of validGroupings that are supersets of selectedValues
-export function SupersetsForNotes(selectedValues, validGroupings) {
-    let supersets = [];
+export function SupersetsForNotes(selectedValues: number[], validGroupings: {[key: string]: number}): string[] {
+    let supersets: string[] = [];
     let selectedValuesCombined = 0;
 
     for (let valuesIdx = 0; valuesIdx < selectedValues.length; valuesIdx++) {
         selectedValuesCombined = selectedValuesCombined | (1 << selectedValues[valuesIdx]);
     }
 
-    for (const groupingIdx in validGroupings) {
-        const currentGrouping = validGroupings[groupingIdx];
-        for (const noteIdx in NOTES) {
+    let groupingName: string;
+    for (groupingName in validGroupings) {
+        const currentGrouping = validGroupings[groupingName];
+        for (let noteIdx = 0; noteIdx < NOTES.length; noteIdx++) {
             const shiftedInterval = RotateInterval(currentGrouping, noteIdx);
             if ((shiftedInterval | selectedValuesCombined) === shiftedInterval) {
                 const rootNoteName = NOTES[noteIdx];
-                supersets.push(rootNoteName + " " + groupingIdx);
+                supersets.push(rootNoteName + " " + groupingName);
             }
         }
     }

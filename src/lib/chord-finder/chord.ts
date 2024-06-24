@@ -1,6 +1,6 @@
 import { GroupingsForNotes, NotesForIntervals, SupersetsForNotes } from "./common";
 
-export const CHORDS = {
+export const CHORDS: {[key: string]: number} = {
     "major": 0b000010010001,
     "minor": 0b000010001001,
     "maj7": 0b100010010001,
@@ -36,14 +36,15 @@ export const CHORDS = {
     "9sus4": 0b010010100101,
 };
 
-export function NotesForChord(rootNote, chordType) {
-    const deltas = CHORDS[chordType];
+// Returns a dictionary of true booleans keyed by note indices for notes in the input chord
+export function NotesForChord(rootNote: number, chordType: string): {[key: number]: boolean} {
+    const deltas: number = CHORDS[chordType];
 
     return NotesForIntervals(rootNote, deltas);
 };
 
-export function ChordsForNotes(selectedNotes) {
-    let filteredNotes = [];
+export function ChordsForNotes(selectedNotes: number[]): string[] {
+    let filteredNotes: number[] = [];
     for (let idx = 0; idx < selectedNotes.length; idx++) {
         if (selectedNotes[idx] > 0) {
             filteredNotes.push(idx);
@@ -53,7 +54,7 @@ export function ChordsForNotes(selectedNotes) {
     return GroupingsForNotes(filteredNotes, CHORDS);
 }
 
-export function FindPotentialChords(selectedNotes) {
+export function FindPotentialChords(selectedNotes: number[]) {
     let filteredNotes = [];
     for (let idx = 0; idx < selectedNotes.length; idx++) {
         if (selectedNotes[idx] > 0) {

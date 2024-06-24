@@ -1,4 +1,4 @@
-const TUNINGS = {
+const TUNINGS: {[key: string]: string[]} = {
     'Standard Tuning': ['E', 'A', 'D', 'G', 'B', 'E'],
     'Drop D': ['D', 'A', 'D', 'G', 'B', 'E'],
     'DADGAD': ['D', 'A', 'D', 'G', 'A', 'D'],

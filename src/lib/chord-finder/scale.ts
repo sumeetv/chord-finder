@@ -1,6 +1,6 @@
 import { GroupingsForNotes, NotesForIntervals, SupersetsForNotes } from "./common";
 
-export const SCALES = {
+export const SCALES: {[key: string]: number} = {
     "major": 0b101010110101,
     "minor": 0b010110101101,
     "blues minor": 0b010011101001,
@@ -43,13 +43,13 @@ export const SCALES = {
     "yo": 0b001010100101,
 };
 
-export function NotesForScale(rootNote, scaleType) {
+export function NotesForScale(rootNote: number, scaleType: string): {[key: number]: boolean} {
     const intervals = SCALES[scaleType];
 
     return NotesForIntervals(rootNote, intervals);
 };
 
-export function ScalesForNotes(selectedNotes) {
+export function ScalesForNotes(selectedNotes: number[]): string[] {
     let filteredNotes = [];
     for (let idx = 0; idx < selectedNotes.length; idx++) {
         if (selectedNotes[idx] > 0) {
@@ -60,7 +60,7 @@ export function ScalesForNotes(selectedNotes) {
     return GroupingsForNotes(filteredNotes, SCALES);
 };
 
-export function FindPotentialScales(selectedNotes) {
+export function FindPotentialScales(selectedNotes: number[]): string[] {
     let filteredNotes = [];
     for (let idx = 0; idx < selectedNotes.length; idx++) {
         if (selectedNotes[idx] > 0) {
