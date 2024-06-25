@@ -11,10 +11,15 @@ import "./chord-finder.css";
 import { Heading, Text, useBreakpointValue } from "@chakra-ui/react";
 
 const ChordFinderPage = () => {
-    const layout = useBreakpointValue({
-        base: "vertical",
-        md: "horizontal",
-    });
+    const layout = useBreakpointValue(
+            {
+            base: "vertical",
+            md: "horizontal",
+        },
+        {
+            fallback: 'md',
+        }
+    );
 
     return (
         <Provider store={store}>

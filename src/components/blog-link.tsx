@@ -1,6 +1,6 @@
 'use client'
 
-import { Card, CardBody, CardFooter, Heading, LinkBox, LinkOverlay, Text } from "@chakra-ui/react";
+import { Card, CardBody, Heading, LinkBox, LinkOverlay, Text } from "@chakra-ui/react";
 
 interface BlogLinkProps {
     title: string,

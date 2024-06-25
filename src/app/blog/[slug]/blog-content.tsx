@@ -4,6 +4,8 @@ import { Heading, Text } from '@chakra-ui/react';
 import ChakraUIRenderer from 'chakra-ui-markdown-renderer';
 import ReactMarkdown from 'react-markdown';
 
+import './markdown.css'
+
 interface BlogContentProps {
     title: string,
     date: string,
@@ -29,7 +31,7 @@ export default function BlogContent(props: BlogContentProps) {
                 {date.toLocaleDateString('en-US', options)}
             </Text>
             <br />
-            <ReactMarkdown components={ChakraUIRenderer()} skipHtml>
+            <ReactMarkdown className='markdown-content' components={ChakraUIRenderer()} skipHtml>
                 {props.content}
             </ReactMarkdown>
         </div>

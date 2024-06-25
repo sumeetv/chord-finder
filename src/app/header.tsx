@@ -12,9 +12,11 @@ const Header: React.FC = () => {
     return (
         <Center bg='orange.400' p='1.45rem' color='white'>
             <Flex w='100%' maxW='930px' >
-                <Heading size='2xl'>
-                    @sumeetv
-                </Heading>
+                <Link href='/'>
+                    <Heading size='2xl'>
+                        @sumeetv
+                    </Heading>
+                </Link>
                 <Spacer/>
                 <Flex>
                     <LinkHeader>

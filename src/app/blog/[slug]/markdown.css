@@ -9,12 +9,11 @@
   }
   
   .markdown-content p {
-    margin-bottom: 1em;
+    margin-bottom: 0.5em;
   }
   
   .markdown-content ul, .markdown-content ol {
-    margin-left: 2em;
-    margin-bottom: 1em;
+    margin-bottom: 0.5em;
   }
   
   .markdown-content code {
