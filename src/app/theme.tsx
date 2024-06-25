@@ -6,6 +6,20 @@ const theme = extendTheme({
     heading: `${headerFont.style.fontFamily}, sans-serif`,
     body: `${defaultFont.style.fontFamily}, sans-serif`,
   },
+  components: {
+    Card: {
+      baseStyle: {
+        container: {
+          boxShadow: "md",
+          transition: "all 0.1s ease-in-out",
+          _hover: {
+            boxShadow: "xl",
+            transform: "translateY(-5px)",
+          },
+        }
+      }
+    }
+  },
 })
 
 export default theme
