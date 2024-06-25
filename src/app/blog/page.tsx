@@ -1,19 +1,27 @@
+import BlogLink from '@/components/blog-link';
 import { getSortedPostsData } from '@/lib/posts';
-import { ListItem, UnorderedList } from '@chakra-ui/react';
+import { Heading, ListItem, Text, UnorderedList, Wrap, WrapItem } from '@chakra-ui/react';
 import Link from 'next/link';
 
 export default function Page() {
     const postsData = getSortedPostsData()
     const postsLinks = postsData.map((postData) => (
-        <ListItem key={postData.id}>
-            <Link href={`/blog/${postData.slug}`}>
-                {postData.title}
-            </Link>
-        </ListItem>
+        <WrapItem key={postData.id}>
+            <BlogLink
+                title={postData.title}
+                url={`/blog/${postData.slug}`}
+                date={postData.date}
+            />
+        </WrapItem>
     ));
     return (
-        <UnorderedList>
-            {postsLinks}
-        </UnorderedList>
+        <div>
+            <Heading>
+                Blog
+            </Heading>
+            <Wrap>
+                {postsLinks}
+            </Wrap>
+        </div>
     )
 }

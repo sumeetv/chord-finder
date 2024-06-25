@@ -5,9 +5,9 @@ import React from 'react';
 
 interface CompanyLinkProps {
     name: string,
-    url: string;
-    imageUrl?: string;
-    description?: string;
+    url: string,
+    imageUrl?: string,
+    description?: string,
 }
 
 export default function CompanyLink({ name, url, imageUrl='', description=''}: CompanyLinkProps) {
@@ -15,7 +15,7 @@ export default function CompanyLink({ name, url, imageUrl='', description=''}: C
         <LinkBox>
             <Card>
                 <CardBody w={'200px'} h={'120px'} >
-                    <Heading size={'xs'}>
+                    <Heading size='xs'>
                         <LinkOverlay href={url}>
                             {name}
                         </LinkOverlay>
