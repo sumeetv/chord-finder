@@ -2,7 +2,9 @@
 
 import React from 'react';
 
-import { Heading, Link, Text } from "@chakra-ui/react";
+import { Heading, Text, Wrap, WrapItem } from "@chakra-ui/react";
+
+import CompanyLink from '@/components/company-link';
 
 type Company = {
     name: string;
@@ -93,21 +95,26 @@ export default function Page() {
     let companyLinks: React.JSX.Element[] = [];
     CompanyList.forEach(company => {
         companyLinks.push(
-            <div key={company.name}>
-                <Link href={company.url}>{company.name}</Link>
-            </div>
+            <WrapItem key={company.name}>
+                <CompanyLink
+                    name={company.name}
+                    url={company.url}
+                />
+            </WrapItem>
         );
     });
     return (
         <div>
-            <Heading>Testing companies page</Heading>
+            <Heading>Companies</Heading>
             <br />
             <Text>
                 {`These are companies I have had the privilege of working with either as an investor or advisor over the years.
                 Please feel free to reach out if you'd like to get in touch with any of them.`}
             </Text>
             <br />
-            {companyLinks}
+            <Wrap spacing={'20px'}>
+                {companyLinks}
+            </Wrap>
         </div>
     )
 }
