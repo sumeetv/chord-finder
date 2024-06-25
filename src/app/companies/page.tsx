@@ -2,7 +2,7 @@
 
 import React from 'react';
 
-import { Center, Heading, Text, Wrap, WrapItem } from "@chakra-ui/react";
+import { Heading, Text, Wrap, WrapItem } from "@chakra-ui/react";
 
 import CompanyLink from '@/components/company-link';
 
