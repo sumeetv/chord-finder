@@ -1,5 +1,3 @@
-'use client'
-
 import BlogLink from '@/components/blog-link';
 import { getSortedPostsData } from '@/lib/posts';
 import { Heading, Wrap, WrapItem } from '@chakra-ui/react';
