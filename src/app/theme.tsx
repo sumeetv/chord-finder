@@ -13,12 +13,14 @@ const theme = extendTheme({
           boxShadow: "md",
           transition: "all 0.1s ease-in-out",
           _hover: {
-            boxShadow: "xl",
-            transform: "translateY(-5px)",
+            md: {
+              boxShadow: "xl",
+              transform: "translateY(-5px)",
+            },
           },
-        }
-      }
-    }
+        },
+      },
+    },
   },
 })
 
