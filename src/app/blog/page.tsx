@@ -1,7 +1,8 @@
+'use client'
+
 import BlogLink from '@/components/blog-link';
 import { getSortedPostsData } from '@/lib/posts';
-import { Heading, ListItem, Text, UnorderedList, Wrap, WrapItem } from '@chakra-ui/react';
-import Link from 'next/link';
+import { Heading, Wrap, WrapItem } from '@chakra-ui/react';
 
 export default function Page() {
     const postsData = getSortedPostsData()
