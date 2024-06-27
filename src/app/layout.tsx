@@ -20,6 +20,7 @@ export default function RootLayout({
 }>) {
   const divStyle: React.CSSProperties = {
     maxWidth: '860px',
+    width: '100%',
   }
 
   return (
