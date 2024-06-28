@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
 
-import { Button, Modal, ModalBody, ModalContent, ModalHeader, ModalOverlay, Select } from "@chakra-ui/react";
+import { Button, Modal, ModalBody, ModalContent, ModalHeader, ModalOverlay, Select, Wrap, WrapItem } from "@chakra-ui/react";
 
 import NOTES from "@/lib/chord-finder/notes";
 import { FindPotentialScales, NotesForScale, ScalesForNotes } from "@/lib/chord-finder/scale";
@@ -19,7 +19,6 @@ const ScaleBoard = ({
     selectedScaleNotes,
     selectScaleNote,
     deselectScaleNote,
-    layout,
 }) => {
     const defaultTuning = Object.keys(TUNINGS)[0];
     const [currentTuning, setCurrentTuning] = useState(defaultTuning);
@@ -61,14 +60,18 @@ const ScaleBoard = ({
 
     return (
         <div>
-            <div className="fretboard-header">
-                <ScaleSelector />
-                <div className="fretboard-tuning">
-                    <Select onChange={(event) => setCurrentTuning(event.target.value)}>
-                        {tunings}
-                    </Select>
-                </div>
-            </div>
+            <Wrap className="fretboard-header">
+                <WrapItem>
+                    <ScaleSelector />
+                </WrapItem>
+                <WrapItem>
+                    <div className="fretboard-tuning">
+                        <Select onChange={(event) => setCurrentTuning(event.target.value)}>
+                            {tunings}
+                        </Select>
+                    </div>
+                </WrapItem>
+            </Wrap>
             <p>
                 Selected scale(s): {currentScalesText}
             </p>
@@ -93,7 +96,6 @@ const ScaleBoard = ({
                 currentTuning={currentTuning}
                 onSelectNote={selectScaleNote}
                 onDeselectNote={deselectScaleNote}
-                layout={layout}
             />
         </div>
     );

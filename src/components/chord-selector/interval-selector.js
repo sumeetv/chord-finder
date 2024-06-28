@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Select } from "@chakra-ui/react";
+import { Button, Select, Wrap, WrapItem } from "@chakra-ui/react";
 
 import NOTES from "@/lib/chord-finder/notes";
 
@@ -44,29 +44,35 @@ const IntervalSelector = ({
     }
 
     return(
-        <div className="interval-selector-container">
-            <div className="interval-note-selector">
-            <Select
-                className="custom-select"
-                value={currentRoot}
-                onChange={(event) => selectRoot(event.target.value)}
-            >
-                {noteSelectors}
-            </Select>
-            </div>
-            <div className="interval-type-selector">
-                <Select
-                    className="custom-select"
-                    value={currentInterval}
-                    onChange={(event) => selectType(event.target.value)}
-                >
-                    {intervalSelectors}
-                </Select>
-            </div>
-            <Button type="reset" onClick={() => clearSelection()}>
-                {clearSelectionText}
-            </Button>
-        </div>
+        <Wrap className="interval-selector-container">
+            <WrapItem>
+                    <div className="interval-note-selector">
+                    <Select
+                        className="custom-select"
+                        value={currentRoot}
+                        onChange={(event) => selectRoot(event.target.value)}
+                    >
+                        {noteSelectors}
+                   </Select>
+                </div>
+            </WrapItem>
+            <WrapItem>
+                <div className="interval-type-selector">
+                    <Select
+                        className="custom-select"
+                        value={currentInterval}
+                        onChange={(event) => selectType(event.target.value)}
+                    >
+                        {intervalSelectors}
+                    </Select>
+                </div>
+            </WrapItem>
+            <WrapItem>
+                <Button type="reset" onClick={() => clearSelection()}>
+                    {clearSelectionText}
+                </Button>
+            </WrapItem>
+        </Wrap>
     );
 };
 
