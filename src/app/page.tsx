@@ -1,6 +1,6 @@
 'use client'
 
-import { Box, Center, Heading, Image, Text } from "@chakra-ui/react";
+import { Box, Heading, Image, Stack, Text } from "@chakra-ui/react";
 
 import { CompanyList } from "@/lib/companies";
 import CompanyLink from '@/components/company-link';
@@ -26,8 +26,8 @@ export default function Home() {
                 products, and more at Discord, Uber, and Meta.`}
             </Heading>
             <br />
-            <Center paddingY={`40px`}>
-                <Box paddingRight={`4`}>
+            <Stack spacing={4} direction={['column', 'row']}>
+                <Box>
                     <Image
                         borderRadius={`10px`}
                         aspectRatio={1}
@@ -35,12 +35,15 @@ export default function Home() {
                         alt="Headshot of Sumeet Vaidya (sumeetv)"
                     />
                 </Box>
-                <Text>
-                    {`Welcome to my site! This is an intro for people who want to get to know
-                    me, a portfolio of companies I have advised and invested in, and a playground
-                    for me to tinker with.`}
+                <Text maxW={'70%'}>
+                    {`Welcome to my site! You can find information on companies I have advised and invested,
+                    information on my overall investing philosophy, and how I try to help companies I'm
+                    working with. I also try to use this as a place to dump thoughts
+                    that I feel a need to think through and might hopefully be useful to at least one
+                    other person. I've also got a section for random projects I work on more for my own
+                    sake but (again) hopefully others might find useful.`}
                 </Text>
-            </Center>
+            </Stack>
             <br />
             <Heading size={'xs'}>
                 {`Companies I have had the privilege of advising or investing in.`}
