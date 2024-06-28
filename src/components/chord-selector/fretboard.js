@@ -5,7 +5,7 @@ import TUNINGS from "@/lib/chord-finder/tunings";
 
 import FretCell from "@/components/chord-selector/fret-cell";
 import FretCellTypes from "@/components/chord-selector/fret-cell-types";
-import { Box, Flex } from "@chakra-ui/react";
+import { Flex } from "@chakra-ui/react";
 
 const NUM_FRETS = 15;
 const FRET_MARKERS = [3, 5, 7, 10, 12, 15];
@@ -16,7 +16,6 @@ const GuitarString = ({
     highlighted_notes,
     onSelectNote,
     onDeselectNote,
-    stringDirection,
 }) => {
     let output = [];
 
@@ -42,14 +41,14 @@ const GuitarString = ({
         );
     }
     return (
-        <Flex className="guitar-string" direction={stringDirection}>
+        <Flex className="guitar-string" direction={['column', 'row']}>
             {output}
         </Flex>
     );
 };
 
 // Generate a row of fret cells that display fret markers for reference
-const MarkerRow = (stringDirection) => {
+const MarkerRow = () => {
     let row = [];
     for (let idx = 0; idx < NUM_FRETS; idx++) {
         const visible_note = (FRET_MARKERS.indexOf(idx) === -1) ?
@@ -64,7 +63,7 @@ const MarkerRow = (stringDirection) => {
         )
     }
     return (
-        <Flex className="guitar-string" direction={stringDirection}>
+        <Flex className="guitar-string" direction={['column', 'row']}>
             {row}
         </Flex>
     );
@@ -75,22 +74,7 @@ const Fretboard = ({
     currentTuning,
     onSelectNote,
     onDeselectNote,
-    layout,
 }) => {
-    let boardDirection, stringDirection;
-    if (layout === "vertical")
-    {
-        boardDirection = "row";
-        stringDirection = "column";
-    } else if (layout === "horizontal") {
-        boardDirection = "column";
-        stringDirection = "row";
-    } else {
-        console.warn("Invalid layout for fretboard");
-        boardDirection = "column";
-        stringDirection = "row";
-    }
-
     let strings = [];
     const tuning_deltas = TUNINGS[currentTuning];
     for (let idx = tuning_deltas.length - 1; idx >= 0; idx--) {
@@ -102,21 +86,17 @@ const Fretboard = ({
                 highlighted_notes={highlightedNotes}
                 onSelectNote={onSelectNote}
                 onDeselectNote={onDeselectNote}
-                stringDirection={stringDirection}
             />
         );
     }
 
-    if (layout === "vertical")
-        strings = strings.reverse();
-
     return (
-        <Box>
-            <Flex direction={boardDirection}>
-                {MarkerRow(stringDirection)}
+        <Flex direction={['row', 'column']}>
+            {MarkerRow()}
+            <Flex direction={['row-reverse', 'column']}>
                 {strings}
             </Flex>
-        </Box>
+        </Flex>
     );
 };
 

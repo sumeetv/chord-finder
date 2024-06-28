@@ -1,45 +1,49 @@
 import React from 'react';
 
-import { Center, Flex, Heading, Link, Spacer } from '@chakra-ui/react';
-
-const LinkHeader = (props: any) => {
-    return (
-        <Center p='0.5rem' {...props} />
-    );
-}
+import { Center, Flex, HStack, Heading, Link, Spacer, Text } from '@chakra-ui/react';
 
 const Header: React.FC = () => {
+    const linkFontSize = ['xs', 'md'];
+
     return (
         <Center bg='orange.400' p='1.45rem' color='white'>
             <Flex w='100%' maxW='930px' >
                 <Link href='/'>
-                    <Heading size='2xl'>
+                    <Heading size={['lg', '2xl']}>
                         @sumeetv
                     </Heading>
                 </Link>
                 <Spacer/>
-                <Flex>
-                    <LinkHeader>
+                <HStack spacing={['0.25rem', '1rem']}>
+                    <Center>
                         <Link href='/'>
-                            About
+                            <Text fontSize={linkFontSize}>
+                                About
+                            </Text>
                         </Link>
-                    </LinkHeader>
-                    <LinkHeader>
+                    </Center>
+                    <Center>
                         <Link href='/companies'>
-                            Companies
+                            <Text fontSize={linkFontSize}>
+                                Companies
+                            </Text>
                         </Link>
-                    </LinkHeader>
-                    <LinkHeader>
+                    </Center>
+                    <Center>
                         <Link href='/blog'>
-                            Blog
+                            <Text fontSize={linkFontSize}>
+                                Blog
+                            </Text>
                         </Link>
-                    </LinkHeader>
-                    <LinkHeader>
+                    </Center>
+                    <Center>
                         <Link href='/projects'>
-                            Projects
+                            <Text fontSize={linkFontSize}>
+                                Projects
+                            </Text>
                         </Link>
-                    </LinkHeader>
-                </Flex>
+                    </Center>
+                </HStack>
             </Flex>
         </Center>
         

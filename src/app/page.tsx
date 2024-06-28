@@ -35,7 +35,7 @@ export default function Home() {
                         alt="Headshot of Sumeet Vaidya (sumeetv)"
                     />
                 </Box>
-                <Text maxW={'70%'}>
+                <Text maxW={['100%', '70%']}>
                     {`Welcome to my site! You can find information on companies I have advised and invested,
                     information on my overall investing philosophy, and how I try to help companies I'm
                     working with. I also try to use this as a place to dump thoughts
@@ -44,6 +44,7 @@ export default function Home() {
                     sake but (again) hopefully others might find useful.`}
                 </Text>
             </Stack>
+            <br />
             <br />
             <Heading size={'xs'}>
                 {`Companies I have had the privilege of advising or investing in.`}

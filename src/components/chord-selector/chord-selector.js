@@ -14,10 +14,6 @@ const ChordSelector = ({
     selectChordType,
     clearChordSelection
 }) => {
-    const current_highlight = (currentChord.chord_root === -1) || (currentChord.chord_type === -1) ?
-        "selected notes" :
-        currentChord.chord_root + " " + currentChord.chord_type;
-
     return(
         <IntervalSelector
             currentRoot={currentChord.chord_root}

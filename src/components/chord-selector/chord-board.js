@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
 
-import { Button, Modal, ModalBody, ModalContent, ModalHeader, ModalOverlay, Select } from "@chakra-ui/react";
+import { Button, Modal, ModalBody, ModalContent, ModalHeader, ModalOverlay, Select, Wrap, WrapItem } from "@chakra-ui/react";
 
 import { ChordsForNotes, FindPotentialChords, NotesForChord } from "@/lib/chord-finder/chord";
 import NOTES from "@/lib/chord-finder/notes";
@@ -19,7 +19,6 @@ const ChordBoard = ({
     selectedChordNotes,
     selectChordNote,
     deselectChordNote,
-    layout,
 }) => {
     const defaultTuning = Object.keys(TUNINGS)[0];
     const [currentTuning, setCurrentTuning] = useState(defaultTuning);
@@ -61,14 +60,18 @@ const ChordBoard = ({
 
     return (
         <div>
-            <div className="fretboard-header">
-                <ChordSelector />
-                <div className="fretboard-tuning">
-                    <Select onChange={(event) => setCurrentTuning(event.target.value)}>
-                        {tunings}
-                    </Select>
-                </div>
-            </div>
+            <Wrap className="fretboard-header">
+                <WrapItem>
+                    <ChordSelector />
+                </WrapItem>
+                <WrapItem>
+                    <div className="fretboard-tuning">
+                        <Select onChange={(event) => setCurrentTuning(event.target.value)}>
+                            {tunings}
+                        </Select>
+                    </div>
+                </WrapItem>
+            </Wrap>
             <p>
                 Selected chord(s): {currentChordsText}
             </p>
@@ -93,7 +96,6 @@ const ChordBoard = ({
                 currentTuning={currentTuning}
                 onSelectNote={selectChordNote}
                 onDeselectNote={deselectChordNote}
-                layout={layout}
             />
         </div>
     );
