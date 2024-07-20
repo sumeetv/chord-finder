@@ -5,6 +5,8 @@ import { Providers } from "./providers";
 
 import { Center } from '@chakra-ui/react';
 
+import { Analytics } from "@vercel/analytics/react"
+
 import { defaultFont } from './font';
 import Header from "./header";
 
@@ -34,6 +36,7 @@ export default function RootLayout({
               </div>
           </Center>
         </Providers>
+        <Analytics />
       </body>
     </html>
   );
