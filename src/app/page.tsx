@@ -25,7 +25,6 @@ export default function Home() {
                 who has scaled enterprise integrations, developer platforms, social
                 products, and more at Discord, Uber, and Meta.`}
             </Heading>
-            <br />
             <Stack spacing={4} direction={['column', 'row']}>
                 <Box>
                     <Image
@@ -44,8 +43,6 @@ export default function Home() {
                     sake but (again) hopefully others might find useful.`}
                 </Text>
             </Stack>
-            <br />
-            <br />
             <Heading size={'xs'}>
                 {`Companies I have had the privilege of advising or investing in.`}
             </Heading>

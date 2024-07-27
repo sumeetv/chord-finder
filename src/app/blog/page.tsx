@@ -15,8 +15,8 @@ export default function Page() {
     ));
     return (
         <div>
-            <Heading>
-                Blog
+            <Heading fontFamily={'monospace'}>
+                {`blog`}
             </Heading>
             <Wrap>
                 {postsLinks}
