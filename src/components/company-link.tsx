@@ -3,21 +3,20 @@
 import { Card, CardBody, Heading, LinkBox, LinkOverlay } from '@chakra-ui/react';
 import React from 'react';
 
+import { Company } from '@/lib/companies';
+
 interface CompanyLinkProps {
-    name: string,
-    url: string,
-    imageUrl?: string,
-    description?: string,
+    company: Company,
 }
 
-export default function CompanyLink({ name, url, imageUrl='', description=''}: CompanyLinkProps) {
+export default function CompanyLink({company}: CompanyLinkProps) {
     return (
         <LinkBox>
             <Card>
                 <CardBody w={'200px'} h={'120px'} >
                     <Heading size='xs'>
-                        <LinkOverlay href={url}>
-                            {name}
+                        <LinkOverlay href={company.url}>
+                            {company.name}
                         </LinkOverlay>
                     </Heading>
                 </CardBody>

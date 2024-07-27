@@ -11,9 +11,7 @@ export default function Home() {
     CompanyList.forEach(company => {
         companyLinks.push(
             <CompanyLink
-                key={company.name}
-                name={company.name}
-                url={company.url}
+                company={company}
             />
         );
     });

@@ -12,10 +12,7 @@ export default function Page() {
     CompanyList.forEach(company => {
         companyLinks.push(
             <WrapItem key={company.name}>
-                <CompanyLink
-                    name={company.name}
-                    url={company.url}
-                />
+                <CompanyLink company={company} />
             </WrapItem>
         );
     });
@@ -38,7 +35,7 @@ export default function Page() {
                 {`These are companies I have had the privilege of working with either as an investor or advisor over the years.
                 Please feel free to reach out if you'd like to get in touch with any of them.`}
             </Text>
-            <Wrap spacing={'20px'}>
+            <Wrap spacing={'20px'} paddingTop={'10px'}>
                 {companyLinks}
             </Wrap>
         </div>
