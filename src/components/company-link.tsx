@@ -1,6 +1,6 @@
 'use client'
 
-import { Button, Card, CardBody, Heading, Link, LinkBox, LinkOverlay, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, useDisclosure } from '@chakra-ui/react';
+import { Button, Card, CardBody, forwardRef, Heading, Link, Popover, PopoverArrow, PopoverBody, PopoverContent, PopoverFooter, PopoverTrigger, Portal } from '@chakra-ui/react';
 import React from 'react';
 
 import { Company } from '@/lib/companies';
@@ -9,42 +9,42 @@ interface CompanyLinkProps {
     company: Company,
 }
 
-export default function CompanyLink({company}: CompanyLinkProps) {
-    const {isOpen, onOpen, onClose } = useDisclosure();
-
+const FocusedCard = forwardRef(({children, ...props}, ref) => {
     return (
-        <LinkBox>
-            <Card cursor={'pointer'}>
-                <CardBody w={'200px'} h={'120px'} >
-                    <Heading size='xs' onClick={onOpen}>
+        <Card w={'200px'} {...props} ref={ref}>
+            <CardBody>
+                {children}
+            </CardBody>
+        </Card>
+    );
+})
+
+export default function CompanyLink({company}: CompanyLinkProps) {
+    const initialFocusRef = React.useRef()
+    return (
+        <Popover trigger='hover'>
+            <PopoverTrigger>
+                <FocusedCard>
+                    <Heading size='xs'>
                         {company.name}
                     </Heading>
-                </CardBody>
-            </Card>
-
-            <Modal isOpen={isOpen} onClose={onClose}>
-                <ModalOverlay />
-                <ModalContent width={'800px'}>
-                    <ModalHeader>
-                        {company.name}
-                    </ModalHeader>
-                    <ModalCloseButton />
-                    <ModalBody>
+                </FocusedCard>
+            </PopoverTrigger>
+            <Portal>
+                <PopoverContent>
+                    <PopoverArrow />
+                    <PopoverBody>
                         {company.desc}
-                    </ModalBody>
-
-                    <ModalFooter>
-                    <Button colorScheme='blue' onClick={onClose} marginRight={'10px'}>
-                        {`Close`}
-                    </Button>
-                    <Link href={company.url}>
-                        <Button variant='ghost'>
-                            {`Visit site`}
-                        </Button>
-                    </Link>
-                </ModalFooter>
-                </ModalContent>
-            </Modal>
-        </LinkBox>
+                    </PopoverBody>
+                    <PopoverFooter>
+                        <Link href={company.url}>
+                            <Button variant='ghost' colorScheme='cyan'>
+                                {`Visit site`}
+                            </Button>
+                        </Link>
+                    </PopoverFooter>
+                </PopoverContent>
+            </Portal>
+        </Popover>
     );
 }
