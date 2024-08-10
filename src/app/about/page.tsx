@@ -45,7 +45,7 @@ export default function Page() {
                 over to our enterprise integrations with car rental agencies while providing prospective drivers with tools
                 to get an otherwise unaffordable car so they could earn meaningful money on our platform.`}
             </Text>
-            <Text>
+            <Text paddingTop={'1rem'}>
                 {`After focusing on drivers for a few years, I joined the micromobility boom and worked to integrate JUMP bikes
                 and scooters into the main app. I build the product engineering organization out, led our backing infrastructure
                 and firmware integrations, and, ultimately, negotiated the technical side of the Lime acquisition of our hardware
