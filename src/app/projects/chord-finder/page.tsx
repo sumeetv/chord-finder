@@ -20,12 +20,10 @@ const ChordFinderPage = () => {
                 You can also select a chord or scale from the dropdowns to highlight all corresponding
                 notes.
             </Text>
-            <br />
             <Heading size="md">
                 Chord Selector
             </Heading>
             <ChordBoard />
-            <br />
             <Heading size="md">
                 Scale Selector
             </Heading>

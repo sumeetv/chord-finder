@@ -79,7 +79,7 @@ export const CompanyList: Company[] = [
         desc:
             `Research has shown that personalized messages go a long way to building strong
             customer retention and brand loyalty. Maverick helps small businesses and creators
-            create personalized videos at scale with, integrating with most major CRMs like
+            create personalized videos at scale with AI, integrating with most major CRMs like
             Braze, Klaviyo, and more.`,
     },
     {

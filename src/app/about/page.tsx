@@ -1,6 +1,6 @@
 'use client'
 
-import { Heading, Link, Text } from "@chakra-ui/react"
+import { Heading, Link, ListItem, OrderedList, Text } from "@chakra-ui/react"
 import NextLink from "next/link"
 import React from "react"
 
@@ -51,8 +51,14 @@ export default function Page() {
                 {`Investing`}
             </Heading>
             <Text>
-                {`Investing philosophy, coffee menu offerings`}
+                {`Angel investing is a way for me to ensure our incentives are aligned while going deep on technical and
+                product challenges founders are facing. On a personal level, this helps me:`}
             </Text>
+            <OrderedList p={'1rem'}>
+                <ListItem>{`Get recharged for my day job by helping great founders working on interesting problems`}</ListItem>
+                <ListItem>{`Dig more into industries and verticals that I am personally passionate about`}</ListItem>
+                <ListItem>{`Support, coach, and mentor high-potential people I believe in`}</ListItem>
+            </OrderedList>
         </div>
     )
 }
