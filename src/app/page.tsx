@@ -5,7 +5,7 @@ import { Box, Heading, Image, Stack, Text } from "@chakra-ui/react";
 export default function Home() {
     return (
         <main>
-            <Stack spacing={4} direction={['column', 'row']}>
+            <Stack spacing={4} direction={['column', 'row']} paddingTop={'1rem'}>
                 <Box>
                     <Image
                         borderRadius={`10px`}
