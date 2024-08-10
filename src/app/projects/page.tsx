@@ -5,7 +5,9 @@ import { Card, CardBody, CardHeader, Heading, Image, Link, LinkBox, LinkOverlay,
 export default function Page() {
     return (
         <div>
-            <Heading>Projects</Heading>
+            <Heading fontFamily={'monospace'}>
+                {`projects`}
+            </Heading>
             <Text>
                 Welcome to the random prototypes and side projects I put together in my spare time. Keep in mind that things might be a little rough or buggy, but let me know if you find any issues!
             </Text>

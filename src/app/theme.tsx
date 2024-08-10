@@ -1,4 +1,4 @@
-import { extendTheme } from '@chakra-ui/react'
+import { extendTheme, Heading } from '@chakra-ui/react'
 import { defaultFont, headerFont } from './font'
 
 const theme = extendTheme({
@@ -19,6 +19,11 @@ const theme = extendTheme({
             },
           },
         },
+      },
+    },
+    Heading: {
+      baseStyle: {
+        paddingY: "10px",
       },
     },
   },

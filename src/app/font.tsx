@@ -1,13 +1,13 @@
-import { Montserrat, PT_Serif } from 'next/font/google'
+import { Merriweather, Open_Sans } from 'next/font/google'
 
-export const defaultFont = PT_Serif({
+export const defaultFont = Open_Sans({
   weight: ['400', '700'],
   subsets: ['latin'],
   display: 'swap',
 })
 
-export const headerFont = Montserrat({
-    weight: ['400', '700'],
+export const headerFont = Merriweather({
+    weight: ['400'],
     subsets: ['latin'],
     display: 'swap',
   })

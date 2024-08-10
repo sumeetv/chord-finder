@@ -30,7 +30,6 @@ export default function BlogContent(props: BlogContentProps) {
             <Text>
                 {date.toLocaleDateString('en-US', options)}
             </Text>
-            <br />
             <ReactMarkdown className='markdown-content' components={ChakraUIRenderer()} skipHtml>
                 {props.content}
             </ReactMarkdown>

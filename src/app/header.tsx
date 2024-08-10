@@ -8,15 +8,17 @@ const Header: React.FC = () => {
     return (
         <Center bg='orange.400' p='1.45rem' color='white'>
             <Flex w='100%' maxW='930px' >
-                <Link href='/'>
-                    <Heading size={['lg', '2xl']}>
-                        @sumeetv
-                    </Heading>
-                </Link>
+                <Center>
+                    <Link href='/'>
+                        <Text fontSize={linkFontSize}>
+                            @sumeetv
+                        </Text>
+                    </Link>
+                </Center>
                 <Spacer/>
                 <HStack spacing={['0.25rem', '1rem']}>
                     <Center>
-                        <Link href='/'>
+                        <Link href='/about'>
                             <Text fontSize={linkFontSize}>
                                 About
                             </Text>
