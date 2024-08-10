@@ -58,7 +58,7 @@ export default function Page() {
             <Text>
                 {`I joined Facebook at time when people were still referring to us as 'Myspace 2.0' while Google+ and Twitter
                 looked like the looming giants in the space. Joining during a company-wide lockdown and seeing what it took to
-                turn the company around after our IPO helped learn what it takes to truly compete in our industry. I worked on
+                turn the company around after our IPO helped me learn what it takes to truly compete in our industry. I worked on
                 privacy before joining the first iteration of the Public Content team, building tools for celebrities and creators
                 while tackling the challenges of public discourse at scale with ranked and threaded comments. I later helped
                 reboot the Groups product and shipped the first rich React Native integration in a core Facebook app to power a
