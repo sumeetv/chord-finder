@@ -1,4 +1,4 @@
-import { extendTheme, Heading } from '@chakra-ui/react'
+import { extendTheme } from '@chakra-ui/react'
 import { defaultFont, headerFont } from './font'
 
 const theme = extendTheme({

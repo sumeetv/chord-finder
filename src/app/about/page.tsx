@@ -1,10 +1,106 @@
 'use client'
 
-import { Heading, Link, ListItem, OrderedList, Text } from "@chakra-ui/react"
+import { Heading, Link, ListItem, Tab, TabList, TabPanel, TabPanels, Tabs, Text, UnorderedList } from "@chakra-ui/react"
 import NextLink from "next/link"
 import React from "react"
 
 export default function Page() {
+    const headingPadding = "1.5rem";
+    const paragraphPadding = "0.5rem";
+
+    const coffeeMenu =
+        <Tabs pt={paragraphPadding}>
+            <TabList>
+                <Tab>Small</Tab>
+                <Tab>Medium</Tab>
+                <Tab>Large</Tab>
+            </TabList>
+
+            <TabPanels>
+                <TabPanel>
+                    <Heading size='xs'>
+                        {`I can typically provide these quickly over email.`}
+                    </Heading>
+                    <UnorderedList>
+                    <ListItem>
+                            <Text>
+                                {`Warm introductions to a network of strong operators with a proven track record`}
+                            </Text>
+                        </ListItem>
+                        <ListItem>
+                            <Text>
+                                {`Document templates (e.g. engineering RFC, PRD, product spec)`}
+                            </Text>
+                        </ListItem>
+                        <ListItem>
+                            <Text>
+                                {`Planning templates (e.g. annual, quarterly)`}
+                            </Text>
+                        </ListItem>
+                        <ListItem>
+                            <Text>
+                                {`Broad engineering archetypes for career growth`}
+                            </Text>
+                        </ListItem>
+                    </UnorderedList>
+                </TabPanel>
+                <TabPanel>
+                    <Heading size='xs'>
+                        {`These tend do be working sessions or longer async discussions.`}
+                    </Heading>
+                    <UnorderedList>
+                        <ListItem>
+                            <Text>
+                                {`Pitch deck runthrough`}
+                            </Text>
+                        </ListItem>
+                        <ListItem>
+                            <Text>
+                                {`One-off coaching sessions`}
+                            </Text>
+                        </ListItem>
+                        <ListItem>
+                            <Text>
+                                {`Vetting a potential hire / helping with an interview`}
+                            </Text>
+                        </ListItem>
+                        <ListItem>
+                            <Text>
+                                {`Giving feedback on a technical approach`}
+                            </Text>
+                        </ListItem>
+                    </UnorderedList>
+                </TabPanel>
+                <TabPanel>
+                    <Heading size='xs'>
+                        {`Longer term projects for companies I advise.`}
+                    </Heading>
+                    <UnorderedList>
+                        <ListItem>
+                            <Text>
+                                {`Developing custom engineering ladders with variable flexiblity and archetypes`}
+                            </Text>
+                        </ListItem>
+                        <ListItem>
+                            <Text>
+                                {`Develping a new hiring process for a given role or job family`}
+                            </Text>
+                        </ListItem>
+                        <ListItem>
+                            <Text>
+                                {`Collaborating on company strategy, planning, and goals`}
+                            </Text>
+                        </ListItem>
+                        <ListItem>
+                            <Text>
+                                {`Iterating on a GTM plan based on consumer feedback and industry trends`}
+                            </Text>
+                        </ListItem>
+                    </UnorderedList>
+                </TabPanel>
+            </TabPanels>
+        </Tabs>
+
     return (
         <div>
             <Heading fontFamily={'monospace'}>
@@ -14,7 +110,22 @@ export default function Page() {
                 {`Hi! I'm an engineer at heart who loves building things, but I've learned that building goes beyond
                 just code. I've found a lot of joy in building teams, organizations, products, and businesses.`}
             </Text>
-            <Heading>
+            <Heading pt={headingPadding}>
+                {`Investing`}
+            </Heading>
+            <Text>
+                {`Angel investing is a way for me to ensure my incentives are aligned with founders while going deep on technical
+                and product challenges they are facing. Blending the challenges of technical constraints with real business requirements
+                motivates me more than either individually, and I love finding gaps in the industry and novel opportunities founders
+                have discovered.`}
+            </Text>
+            <Text pt={paragraphPadding}>
+                {`When supporting founders, I offer a variety of concrete ways I can help them to avoid the usual
+                song and dance of "let me know how I can be helpful." For any founders interested in chatting, here is a sample of
+                what I can offer.`}
+            </Text>
+            {coffeeMenu}
+            <Heading pt={headingPadding}>
                 {`Work`}
             </Heading>
             <Text>
@@ -24,7 +135,7 @@ export default function Page() {
                 </Link>
                 {` here.`}
             </Text>
-            <Heading size={'md'}>
+            <Heading size={'md'} pt={headingPadding}>
                 {`Discord`}
             </Heading>
             <Text>
@@ -35,7 +146,7 @@ export default function Page() {
                 product organization in collaboration with OpenAI and other major players in the space, and led our efforts
                 to reinvest in gaming by partnering directly with game developers and publishers.`}
             </Text>
-            <Heading size={'md'}>
+            <Heading size={'md'} pt={headingPadding}>
                 {`Uber`}
             </Heading>
             <Text>
@@ -45,14 +156,14 @@ export default function Page() {
                 over to our enterprise integrations with car rental agencies while providing prospective drivers with tools
                 to get an otherwise unaffordable car so they could earn meaningful money on our platform.`}
             </Text>
-            <Text paddingTop={'1rem'}>
+            <Text pt={paragraphPadding}>
                 {`After focusing on drivers for a few years, I joined the micromobility boom and worked to integrate JUMP bikes
                 and scooters into the main app. I build the product engineering organization out, led our backing infrastructure
                 and firmware integrations, and, ultimately, negotiated the technical side of the Lime acquisition of our hardware
                 and firmware. Having been on the other side of M&A and managing through major layoffs was a painful but educational
                 experience.`}
             </Text>
-            <Heading size={'md'}>
+            <Heading size={'md'} pt={headingPadding}>
                 {`Meta`}
             </Heading>
             <Text>
@@ -63,17 +174,6 @@ export default function Page() {
                 while tackling the challenges of public discourse at scale with ranked and threaded comments. I later helped
                 reboot the Groups product and shipped the first rich React Native integration in a core Facebook app to power a
                 new standalone Groups app.`}
-            </Text>
-            <Heading>
-                {`Investing`}
-            </Heading>
-            <Text>
-                {`Angel investing is a way for me to ensure my incentives are aligned with founders while going deep on technical
-                and product challenges they are facing. Blending the challenges of technical constraints with real business requirements
-                motivates me more than either individually, and I love finding gaps in the industry and novel opportunities founders
-                have discovered. When supporting founders, I offer a variety of concrete ways I can help them to avoid the usual
-                song and dance of "let me know how I can be helpful." At the end of the day, I make it my priority to ensure their
-                success.`}
             </Text>
         </div>
     )
