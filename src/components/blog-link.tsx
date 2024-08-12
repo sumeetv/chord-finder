@@ -20,7 +20,7 @@ export default function BlogLink(props: BlogLinkProps) {
 
     return (
         <LinkBox>
-            <Card>
+            <Card variant={'with-shadow'}>
                 <CardBody>
                     <Heading size='xs'>
                         <LinkOverlay href={props.url}>
