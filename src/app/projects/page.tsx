@@ -12,7 +12,7 @@ export default function Page() {
                 Welcome to the random prototypes and side projects I put together in my spare time. Keep in mind that things might be a little rough or buggy, but let me know if you find any issues!
             </Text>
             <LinkBox>
-                <Card style={{ maxWidth: `800px` }} marginTop={`2rem`}>
+                <Card variant={'with-shadow'} style={{ maxWidth: `800px` }} marginTop={`2rem`}>
                     <CardBody>
                         <LinkOverlay href='/projects/chord-finder'>
                             <Heading size={'lg'}>Chord Finder</Heading>

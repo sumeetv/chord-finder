@@ -8,14 +8,16 @@ const theme = extendTheme({
   },
   components: {
     Card: {
-      baseStyle: {
-        container: {
-          boxShadow: "md",
-          transition: "all 0.1s ease-in-out",
-          _hover: {
-            md: {
-              boxShadow: "xl",
-              transform: "translateY(-5px)",
+      variants: {
+        'with-shadow': {
+          container: {
+            boxShadow: "md",
+            transition: "all 0.1s ease-in-out",
+            _hover: {
+              md: {
+                boxShadow: "xl",
+                transform: "translateY(-5px)",
+              },
             },
           },
         },

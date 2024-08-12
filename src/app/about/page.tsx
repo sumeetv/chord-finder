@@ -8,6 +8,17 @@ export default function Page() {
     const headingPadding = "1.5rem";
     const paragraphPadding = "0.5rem";
 
+    const commonImageProps: Object = {
+        objectFit: 'contain',
+        padding: '1.25rem',
+    };
+
+    const commonCardProps: Object = {
+        marginY: '1.5rem',
+        overflow:'hidden',
+        direction: 'row',
+    };
+
     const coffeeMenu =
         <Tabs pt={paragraphPadding}>
             <TabList>
@@ -135,8 +146,8 @@ export default function Page() {
                 </Link>
                 {` here.`}
             </Text>
-            <Card overflow='hidden' direction='row' variant={'outline'}>
-                <Image objectFit={'cover'} src={'/about-assets/discord_logo.jpg'} alt="discord logo"/>
+            <Card {...commonCardProps}>
+                <Image src={'/about-assets/discord_logo.jpg'} alt="discord logo" {...commonImageProps} />
                 <Stack>
                     <CardBody>
                         <Heading size={'md'}>
@@ -153,32 +164,27 @@ export default function Page() {
                     </CardBody>
                 </Stack>
             </Card>
-            <Card overflow='hidden' direction='row' variant={'outline'}>
+            <Card {...commonCardProps}>
                 <Stack>
                     <CardBody>
                         <Heading size={'md'}>
                             {`Uber`}
                         </Heading>
                         <Text>
-                            {`I initially joined Uber to work on the International Growth team at a time when Uber was trying to expand
-                            beyond the US while fending off international competition. My teams shipped referral tools that solved supply
-                            issues around the world along with unique fleet management tools to address a variety of markets. I moved
-                            over to our enterprise integrations with car rental agencies while providing prospective drivers with tools
-                            to get an otherwise unaffordable car so they could earn meaningful money on our platform.`}
-                        </Text>
-                        <Text pt={paragraphPadding}>
-                            {`After focusing on drivers for a few years, I joined the micromobility boom and worked to integrate JUMP bikes
-                            and scooters into the main app. I build the product engineering organization out, led our backing infrastructure
-                            and firmware integrations, and, ultimately, negotiated the technical side of the Lime acquisition of our hardware
-                            and firmware. Having been on the other side of M&A and managing through major layoffs was a painful but educational
-                            experience.`}
+                            {`My time at Uber was split across competition in new markets on our International Growth team, building out
+                            enterprise integrations for major car rental agencies, and managing our micromobility efforts during JUMP's
+                            explosive growth years. My teams shipped referral tools that solved supply issues around the world, fleet
+                            management tools that scaled to more markets than we anticipated, and the core products and firmware integrations
+                            needed to power our fleets of bikes and scooters. I also negotiated the technical side of the Lime's acquisition of
+                            our hardware and firmware. Having been on the other side of M&A and managing through major layoffs was a painful
+                            but educational experience.`}
                         </Text>
                     </CardBody>
                 </Stack>
-                <Image objectFit={'cover'} src={'/about-assets/uber_com_logo.jpg'} alt="uber logo" />
+                <Image src={'/about-assets/uber_com_logo.jpg'} alt="uber logo" {...commonImageProps}/>
             </Card>
-            <Card overflow='hidden' direction='row' variant={'outline'}>
-                <Image objectFit={'cover'} src={'/about-assets/facebook_logo.jpg'} alt="facebook logo" />
+            <Card {...commonCardProps}>
+                <Image src={'/about-assets/facebook_logo.jpg'} alt="facebook logo" {...commonImageProps}/>
                 <Stack>
                     <CardBody>
                         <Heading size={'md'}>
