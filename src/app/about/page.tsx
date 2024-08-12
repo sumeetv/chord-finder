@@ -1,6 +1,6 @@
 'use client'
 
-import { Heading, Link, ListItem, Tab, TabList, TabPanel, TabPanels, Tabs, Text, UnorderedList } from "@chakra-ui/react"
+import { Card, CardBody, Heading, Image, Link, ListItem, Stack, Tab, TabList, TabPanel, TabPanels, Tabs, Text, UnorderedList } from "@chakra-ui/react"
 import NextLink from "next/link"
 import React from "react"
 
@@ -135,46 +135,67 @@ export default function Page() {
                 </Link>
                 {` here.`}
             </Text>
-            <Heading size={'md'} pt={headingPadding}>
-                {`Discord`}
-            </Heading>
-            <Text>
-                {`I first joined Discord when we were about 250 people and exploding in usage and popularity. During
-                2020, the narrative of Discord shifted from a chat app for gamers to a global communities and communication
-                platform. During my time at Discord, I scaled the Communities and Bots teams, oversaw the acquisition
-                and integration of the Ubiquity6 engineering team, built the creators team from scratch, ran our first AI
-                product organization in collaboration with OpenAI and other major players in the space, and led our efforts
-                to reinvest in gaming by partnering directly with game developers and publishers.`}
-            </Text>
-            <Heading size={'md'} pt={headingPadding}>
-                {`Uber`}
-            </Heading>
-            <Text>
-                {`I initially joined Uber to work on the International Growth team at a time when Uber was trying to expand
-                beyond the US while fending off international competition. My teams shipped referral tools that solved supply
-                issues around the world along with unique fleet management tools to address a variety of markets. I moved
-                over to our enterprise integrations with car rental agencies while providing prospective drivers with tools
-                to get an otherwise unaffordable car so they could earn meaningful money on our platform.`}
-            </Text>
-            <Text pt={paragraphPadding}>
-                {`After focusing on drivers for a few years, I joined the micromobility boom and worked to integrate JUMP bikes
-                and scooters into the main app. I build the product engineering organization out, led our backing infrastructure
-                and firmware integrations, and, ultimately, negotiated the technical side of the Lime acquisition of our hardware
-                and firmware. Having been on the other side of M&A and managing through major layoffs was a painful but educational
-                experience.`}
-            </Text>
-            <Heading size={'md'} pt={headingPadding}>
-                {`Meta`}
-            </Heading>
-            <Text>
-                {`I joined Facebook at time when people were still referring to us as 'Myspace 2.0' while Google+ and Twitter
-                looked like the looming giants in the space. Joining during a company-wide lockdown and seeing what it took to
-                turn the company around after our IPO helped me learn what it takes to truly compete in our industry. I worked on
-                privacy before joining the first iteration of the Public Content team, building tools for celebrities and creators
-                while tackling the challenges of public discourse at scale with ranked and threaded comments. I later helped
-                reboot the Groups product and shipped the first rich React Native integration in a core Facebook app to power a
-                new standalone Groups app.`}
-            </Text>
+            <Card overflow='hidden' direction='row' variant={'outline'}>
+                <Image objectFit={'cover'} src={'/about-assets/discord_logo.jpg'} alt="discord logo"/>
+                <Stack>
+                    <CardBody>
+                        <Heading size={'md'}>
+                            {`Discord`}
+                        </Heading>
+                        <Text>
+                            {`I first joined Discord when we were about 250 people and exploding in usage and popularity. During
+                            2020, the narrative of Discord shifted from a chat app for gamers to a global communities and communication
+                            platform. During my time at Discord, I scaled the Communities and Bots teams, oversaw the acquisition
+                            and integration of the Ubiquity6 engineering team, built the creators team from scratch, ran our first AI
+                            product organization in collaboration with OpenAI and other major players in the space, and led our efforts
+                            to reinvest in gaming by partnering directly with game developers and publishers.`}
+                        </Text>
+                    </CardBody>
+                </Stack>
+            </Card>
+            <Card overflow='hidden' direction='row' variant={'outline'}>
+                <Stack>
+                    <CardBody>
+                        <Heading size={'md'}>
+                            {`Uber`}
+                        </Heading>
+                        <Text>
+                            {`I initially joined Uber to work on the International Growth team at a time when Uber was trying to expand
+                            beyond the US while fending off international competition. My teams shipped referral tools that solved supply
+                            issues around the world along with unique fleet management tools to address a variety of markets. I moved
+                            over to our enterprise integrations with car rental agencies while providing prospective drivers with tools
+                            to get an otherwise unaffordable car so they could earn meaningful money on our platform.`}
+                        </Text>
+                        <Text pt={paragraphPadding}>
+                            {`After focusing on drivers for a few years, I joined the micromobility boom and worked to integrate JUMP bikes
+                            and scooters into the main app. I build the product engineering organization out, led our backing infrastructure
+                            and firmware integrations, and, ultimately, negotiated the technical side of the Lime acquisition of our hardware
+                            and firmware. Having been on the other side of M&A and managing through major layoffs was a painful but educational
+                            experience.`}
+                        </Text>
+                    </CardBody>
+                </Stack>
+                <Image objectFit={'cover'} src={'/about-assets/uber_com_logo.jpg'} alt="uber logo" />
+            </Card>
+            <Card overflow='hidden' direction='row' variant={'outline'}>
+                <Image objectFit={'cover'} src={'/about-assets/facebook_logo.jpg'} alt="facebook logo" />
+                <Stack>
+                    <CardBody>
+                        <Heading size={'md'}>
+                            {`Meta`}
+                        </Heading>
+                        <Text>
+                            {`I joined Facebook at time when people were still referring to us as 'Myspace 2.0' while Google+ and Twitter
+                            looked like the looming giants in the space. Joining during a company-wide lockdown and seeing what it took to
+                            turn the company around after our IPO helped me learn what it takes to truly compete in our industry. I worked on
+                            privacy before joining the first iteration of the Public Content team, building tools for celebrities and creators
+                            while tackling the challenges of public discourse at scale with ranked and threaded comments. I later helped
+                            reboot the Groups product and shipped the first rich React Native integration in a core Facebook app to power a
+                            new standalone Groups app.`}
+                        </Text>
+                    </CardBody>
+                </Stack>
+            </Card>
         </div>
     )
 }
