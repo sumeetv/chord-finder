@@ -57,7 +57,7 @@ export default function Page() {
                 </TabPanel>
                 <TabPanel>
                     <Heading size='xs'>
-                        {`These tend do be working sessions or longer async discussions.`}
+                        {`These tend to be working sessions or longer async discussions.`}
                     </Heading>
                     <UnorderedList>
                         <ListItem>
