@@ -15,7 +15,7 @@ export default function Home() {
                     />
                 </Box>
                 <Heading size='lg' fontFamily={'monospace'} paddingLeft={'1rem'}>
-                    {`...is an engineering and product leader, advisor, and angel investor
+                    {`...is an engineering leader, advisor, and angel investor
                     who has scaled enterprise integrations, developer platforms, social
                     products, and more at Discord, Uber, and Meta.`}
                 </Heading>
