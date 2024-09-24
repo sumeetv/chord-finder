@@ -163,4 +163,11 @@ export const CompanyList: Company[] = [
             going deeper on your interests, learning, and growing, Thoughtful makes you happier and healthier
             every day.`
     },
+    {
+        name: 'Whop',
+        url: 'https://whop.com/',
+        desc:
+            `Whop is an online marketplace that helps people connect with creators and communities to learn
+            new skills, start a business, and build a network.`
+    },
 ];
