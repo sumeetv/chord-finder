@@ -32,6 +32,14 @@ export const CompanyList: Company[] = [
             to focus on their relationship and wedding plans.`
     },
     {
+        name: 'Blok',
+        url: 'https://www.joinblok.co/',
+        desc:
+            `Blok combines modern AI tools with a deep knowledge set of user personas and human
+            behavior to help teams make data-driven product decisions before spending precious
+            cycles building out expensive experimental flows.`
+    },
+    {
         name: 'Coda',
         url: 'https://coda.io/',
         desc:
