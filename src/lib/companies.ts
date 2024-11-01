@@ -23,15 +23,6 @@ export const CompanyList: Company[] = [
             from small corner stores to large manufacturers with their distribution needs`
     },
     {
-        name: 'Bedelia',
-        url: 'https://www.bedelia.ai/',
-        desc:
-            `Bedelia is an AI-powered concierge service built to guide couples through the
-            prenup process, providing access to a vetted legal marketplace of trusted
-            lawyers. Bedelia makes the process efficient and cost-effective, allowing couples
-            to focus on their relationship and wedding plans.`
-    },
-    {
         name: 'Blok',
         url: 'https://www.joinblok.co/',
         desc:
@@ -108,6 +99,15 @@ export const CompanyList: Company[] = [
             over a dozen major cities, Mykare Health has helped over 70,000 patients receive
             surgical treatment while handling all the paperwork and insurance, letting doctors and
             patients focus on care.`
+    },
+    {
+        name: 'Neptune',
+        url: 'https://www.meetneptune.com/',
+        desc:
+            `Neptune is an AI-powered concierge service built to guide couples through the
+            prenup process, providing access to a vetted legal marketplace of trusted
+            lawyers. Neptune makes the process efficient and cost-effective, allowing couples
+            to focus on their relationship and wedding plans.`
     },
     {
         name: 'Nursewallet',
