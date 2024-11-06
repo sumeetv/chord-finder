@@ -136,6 +136,14 @@ export const CompanyList: Company[] = [
             to worry less about retention and more about the core business.`
     },
     {
+        name: 'Scout AI',
+        url: 'https://www.scoutnow.ai/',
+        desc: `Scout AI is speeds up the hiring process for engineers by generating real-world assessments to
+            identify strong talent. Scout AI manages the vetting process with standards inspired by top tech
+            companies, allowing employers to defined job specific requirements while giving candidates a world
+            class interviewing experience.`,
+    },
+    {
         name: 'Serif Health',
         url: 'https://www.serifhealth.com/',
         desc:
