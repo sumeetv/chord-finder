@@ -11,6 +11,7 @@ export default function Page() {
     const commonImageProps: Object = {
         objectFit: 'contain',
         padding: '1.25rem',
+        maxW: '240px',
     };
 
     const commonCardProps: Object = {
@@ -146,6 +147,23 @@ export default function Page() {
                 </Link>
                 {` here.`}
             </Text>
+            <Card {...commonCardProps}>
+                <Stack>
+                    <CardBody>
+                        <Heading size={'md'}>
+                            {`Crafting`}
+                        </Heading>
+                        <Text>
+                            {`I joined Crafting in 2024 after dealing with years of frustrations with my dev environments. Every
+                            engineer knows the pain of having to get their workspace up and running, and I have always been driven
+                            to maximize my engineers' efficiency. I took on the role of CEO and focused on scaling the business
+                            while making sure the rest of our engineering team was able to focus on building the best dev environment
+                            possible.`}
+                        </Text>
+                    </CardBody>
+                </Stack>
+                <Image src={'/about-assets/crafting_logo.png'} alt="crafting logo" {...commonImageProps} />
+            </Card>
             <Card {...commonCardProps}>
                 <Image src={'/about-assets/discord_logo.jpg'} alt="discord logo" {...commonImageProps} />
                 <Stack>
