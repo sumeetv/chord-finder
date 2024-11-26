@@ -180,6 +180,14 @@ export const CompanyList: Company[] = [
             every day.`
     },
     {
+        name: 'The Wedding Company',
+        url: 'https://www.theweddingcompany.com/',
+        desc:
+            `The Wedding Company has built the most powerful and personalized end-to-end wedding planning platform.
+            With over 1,000 successful weddings and a network of more than 30,000 venues across India, they ensure
+            a seamless and memorable wedding experience.`,
+    },
+    {
         name: 'Whop',
         url: 'https://whop.com/',
         desc:
