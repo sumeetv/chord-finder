@@ -4,6 +4,7 @@ import { Card, CardBody, Container, Heading, Image, Link, ListItem, Stack, Tab, 
 import NextLink from "next/link"
 import React from "react"
 import PageContainer from "@/components/page-container"
+import WorkHistoryCard from "@/components/work-history-card"
 
 export default function Page() {
     const headingPadding = "1.5rem";
@@ -149,79 +150,54 @@ export default function Page() {
                     </Link>
                     {` here.`}
                 </Text>
-                <Card {...commonCardProps}>
-                    <Stack>
-                        <CardBody>
-                            <Heading size={'md'}>
-                                {`Crafting`}
-                            </Heading>
-                            <Text>
-                                {`I joined Crafting in 2024 after dealing with years of frustrations with my dev environments. Every
-                                engineer knows the pain of having to get their workspace up and running, and I have always been driven
-                                to maximize my engineers' efficiency. I took on the role of CEO and focused on scaling the business
-                                while making sure the rest of our engineering team was able to focus on building the best dev environment
-                                possible.`}
-                            </Text>
-                        </CardBody>
-                    </Stack>
-                    <Image src={'/about-assets/crafting_logo.png'} alt="crafting logo" {...commonImageProps} />
-                </Card>
-                <Card {...commonCardProps}>
-                    <Image src={'/about-assets/discord_logo.jpg'} alt="discord logo" {...commonImageProps} />
-                    <Stack>
-                        <CardBody>
-                            <Heading size={'md'}>
-                                {`Discord`}
-                            </Heading>
-                            <Text>
-                                {`I first joined Discord when we were about 250 people and exploding in usage and popularity. During
-                                2020, the narrative of Discord shifted from a chat app for gamers to a global communities and communication
-                                platform. During my time at Discord, I scaled the Communities and Bots teams, oversaw the acquisition
-                                and integration of the Ubiquity6 engineering team, built the creators team from scratch, ran our first AI
-                                product organization in collaboration with OpenAI and other major players in the space, and led our efforts
-                                to reinvest in gaming by partnering directly with game developers and publishers.`}
-                            </Text>
-                        </CardBody>
-                    </Stack>
-                </Card>
-                <Card {...commonCardProps}>
-                    <Stack>
-                        <CardBody>
-                            <Heading size={'md'}>
-                                {`Uber`}
-                            </Heading>
-                            <Text>
-                                {`My time at Uber was split across competition in new markets on our International Growth team, building out
-                                enterprise integrations for major car rental agencies, and managing our micromobility efforts during JUMP's
-                                explosive growth years. My teams shipped referral tools that solved supply issues around the world, fleet
-                                management tools that scaled to more markets than we anticipated, and the core products and firmware integrations
-                                needed to power our fleets of bikes and scooters. I also negotiated the technical side of the Lime's acquisition of
-                                our hardware and firmware. Having been on the other side of M&A and managing through major layoffs was a painful
-                                but educational experience.`}
-                            </Text>
-                        </CardBody>
-                    </Stack>
-                    <Image src={'/about-assets/uber_com_logo.jpg'} alt="uber logo" {...commonImageProps}/>
-                </Card>
-                <Card {...commonCardProps}>
-                    <Image src={'/about-assets/facebook_logo.jpg'} alt="facebook logo" {...commonImageProps}/>
-                    <Stack>
-                        <CardBody>
-                            <Heading size={'md'}>
-                                {`Meta`}
-                            </Heading>
-                            <Text>
-                                {`I joined Facebook at time when people were still referring to us as 'Myspace 2.0' while Google+ and Twitter
-                                looked like the looming giants in the space. Joining during a company-wide lockdown and seeing what it took to
-                                turn the company around after our IPO helped me learn what it takes to truly compete in our industry. I worked on
-                                privacy before joining the first iteration of the Public Content team, building tools for celebrities and creators
-                                while tackling the challenges of public discourse at scale with ranked and threaded comments. I later helped
-                                reboot the Groups product and shipped the first rich React Native integration in a core Facebook app to power a
-                                new standalone Groups app.`}
-                            </Text>
-                        </CardBody>
-                    </Stack>
-                </Card>
+                <WorkHistoryCard
+                    companyName="Crafting"
+                    description="I co-founded Crafting in 2024 after dealing with years of frustrations with my dev environments.
+                    Every engineer knows the pain of having to get their workspace up and running, and I have always been driven
+                    to maximize my engineers' efficiency. As CEO, I focused on scaling the business while making sure the
+                    rest of our engineering team was able to build the best enterprise dev environment possible."
+                    imagePath="/about-assets/crafting_logo.png"
+                    imageAlt="crafting logo"
+                    variant="left"
+                />
+                <WorkHistoryCard
+                    companyName="Discord"
+                    description="I first joined Discord when we were about 250 people and exploding in usage and popularity. During
+                    2020, the narrative of Discord shifted from a chat app for gamers to a global communities and communication
+                    platform. During my time at Discord, I scaled the Communities and Bots teams, oversaw the acquisition
+                    and integration of the Ubiquity6 engineering team, built the creators team from scratch, ran our first AI
+                    product organization in collaboration with OpenAI and other major players in the space, and led our efforts
+                    to reinvest in gaming by partnering directly with game developers and publishers."
+                    imagePath="/about-assets/discord_logo.jpg"
+                    imageAlt="discord logo"
+                    variant="right"
+                />
+                <WorkHistoryCard
+                    companyName="Uber"
+                    description="My time at Uber was split across competition in new markets on our International Growth team, building out
+                    enterprise integrations for major car rental agencies, and managing our micromobility efforts during JUMP's
+                    explosive growth years. My teams shipped referral tools that solved supply issues around the world, fleet
+                    management tools that scaled to more markets than we anticipated, and the core products and firmware integrations
+                    needed to power our fleets of bikes and scooters. I also negotiated the technical side of the Lime's acquisition of
+                    our hardware and firmware. Having been on the other side of M&A and managing through major layoffs was a painful
+                    but educational experience."
+                    imagePath="/about-assets/uber_com_logo.jpg"
+                    imageAlt="uber logo"
+                    variant="left"
+                />
+                <WorkHistoryCard
+                    companyName="Meta"
+                    description="I joined Facebook at time when people were still referring to us as 'Myspace 2.0' while Google+ and Twitter
+                    looked like the looming giants in the space. Joining during a company-wide lockdown and seeing what it took to
+                    turn the company around after our IPO helped me learn what it takes to truly compete in our industry. I worked on
+                    privacy before joining the first iteration of the Public Content team, building tools for celebrities and creators
+                    while tackling the challenges of public discourse at scale with ranked and threaded comments. I later helped
+                    reboot the Groups product and shipped the first rich React Native integration in a core Facebook app to power a
+                    new standalone Groups app."
+                    imagePath="/about-assets/facebook_logo.jpg"
+                    imageAlt="facebook logo"
+                    variant="right"
+                />
             </PageContainer>
         </div>
     )
