@@ -1,10 +1,11 @@
 'use client'
 
-import { Heading, Text } from '@chakra-ui/react';
+import { Container, Heading, Text } from '@chakra-ui/react';
 import ChakraUIRenderer from 'chakra-ui-markdown-renderer';
 import ReactMarkdown from 'react-markdown';
 
 import './markdown.css'
+import Head from 'next/head';
 
 interface BlogContentProps {
     title: string,
@@ -27,12 +28,14 @@ export default function BlogContent(props: BlogContentProps) {
             <Heading>
                 {props.title}
             </Heading>
-            <Text>
+            <Heading size="xs">
                 {date.toLocaleDateString('en-US', options)}
-            </Text>
-            <ReactMarkdown className='markdown-content' components={ChakraUIRenderer()} skipHtml>
-                {props.content}
-            </ReactMarkdown>
+            </Heading>
+            <Container maxW="container.xl" py={8}>
+                <ReactMarkdown className='markdown-content' components={ChakraUIRenderer()} skipHtml>
+                    {props.content}
+                </ReactMarkdown>
+            </Container>
         </div>
     )
 }
