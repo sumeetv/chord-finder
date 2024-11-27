@@ -1,6 +1,6 @@
 'use client'
 
-import { Card, CardBody, CardHeader, Container, Heading, Image, Link, LinkBox, LinkOverlay, Text } from "@chakra-ui/react"
+import { Card, CardBody, Container, Heading, Image, LinkBox, LinkOverlay, Text } from "@chakra-ui/react"
 
 export default function Page() {
     return (

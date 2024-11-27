@@ -1,6 +1,6 @@
 'use client'
 
-import { Container, Heading, Text } from '@chakra-ui/react';
+import { Container, Heading } from '@chakra-ui/react';
 import ChakraUIRenderer from 'chakra-ui-markdown-renderer';
 import ReactMarkdown from 'react-markdown';
 

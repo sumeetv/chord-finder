@@ -25,7 +25,7 @@ export default function Page() {
                 >
                     {postsLinks}
                 </SimpleGrid>
-        </Container>
+            </Container>
         </div>
     )
 }
