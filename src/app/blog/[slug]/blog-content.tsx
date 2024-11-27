@@ -1,8 +1,9 @@
 'use client'
 
-import { Heading, Text } from '@chakra-ui/react';
+import { Heading } from '@chakra-ui/react';
 import ChakraUIRenderer from 'chakra-ui-markdown-renderer';
 import ReactMarkdown from 'react-markdown';
+import PageContainer from '@/components/page-container';
 
 import './markdown.css'
 
@@ -13,7 +14,6 @@ interface BlogContentProps {
 }
 
 export default function BlogContent(props: BlogContentProps) {
-
     const date = new Date(props.date);
     const options: Intl.DateTimeFormatOptions = {
         year: 'numeric',
@@ -21,18 +21,19 @@ export default function BlogContent(props: BlogContentProps) {
         day: 'numeric'
     };
 
-
     return (
         <div>
             <Heading>
                 {props.title}
             </Heading>
-            <Text>
+            <Heading size="xs">
                 {date.toLocaleDateString('en-US', options)}
-            </Text>
-            <ReactMarkdown className='markdown-content' components={ChakraUIRenderer()} skipHtml>
-                {props.content}
-            </ReactMarkdown>
+            </Heading>
+            <PageContainer>
+                <ReactMarkdown className='markdown-content' components={ChakraUIRenderer()} skipHtml>
+                    {props.content}
+                </ReactMarkdown>
+            </PageContainer>
         </div>
     )
 }
