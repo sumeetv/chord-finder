@@ -1,6 +1,7 @@
 import BlogLink from '@/components/blog-link';
+import PageContainer from '@/components/page-container';
 import { getSortedPostsData } from '@/lib/posts';
-import { Container, Heading, SimpleGrid } from '@chakra-ui/react';
+import { Heading, SimpleGrid } from '@chakra-ui/react';
 
 export default function Page() {
     const postsData = getSortedPostsData()
@@ -17,7 +18,7 @@ export default function Page() {
             <Heading fontFamily={'monospace'}>
                 {`blog`}
             </Heading>
-            <Container maxW="container.xl" py={8}>
+            <PageContainer>
                 <SimpleGrid 
                     columns={{ base: 1, md: 2, lg: 3 }} 
                     spacing={{ base: 4, lg: 6 }}
@@ -25,7 +26,7 @@ export default function Page() {
                 >
                     {postsLinks}
                 </SimpleGrid>
-            </Container>
+            </PageContainer>
         </div>
     )
 }

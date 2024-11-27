@@ -3,6 +3,7 @@
 import { Card, CardBody, Container, Heading, Image, Link, ListItem, Stack, Tab, TabList, TabPanel, TabPanels, Tabs, Text, UnorderedList } from "@chakra-ui/react"
 import NextLink from "next/link"
 import React from "react"
+import PageContainer from "@/components/page-container"
 
 export default function Page() {
     const headingPadding = "1.5rem";
@@ -118,7 +119,7 @@ export default function Page() {
             <Heading fontFamily={'monospace'}>
                 {`whois sumeetv`}
             </Heading>
-            <Container maxW="container.xl" py={8}>
+            <PageContainer>
                 <Text>
                     {`Hi! I'm an engineer at heart who loves building things, but I've learned that building goes beyond
                     just code. I've found a lot of joy in building teams, organizations, products, and businesses.`}
@@ -221,7 +222,7 @@ export default function Page() {
                         </CardBody>
                     </Stack>
                 </Card>
-            </Container>
+            </PageContainer>
         </div>
     )
 }

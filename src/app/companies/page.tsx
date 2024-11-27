@@ -2,8 +2,9 @@
 
 import React from 'react';
 
-import { Accordion, AccordionButton, AccordionIcon, AccordionItem, AccordionPanel, Container, Heading, Link, Text } from "@chakra-ui/react";
+import { Accordion, AccordionButton, AccordionIcon, AccordionItem, AccordionPanel, Heading, Link, Text } from "@chakra-ui/react";
 import { LinkIcon } from '@chakra-ui/icons';
+import PageContainer from '@/components/page-container';
 
 import { CompanyList } from '@/lib/companies';
 
@@ -35,7 +36,7 @@ export default function Page() {
             <Heading fontFamily={'monospace'}>
                 {`companies`}
             </Heading>
-            <Container maxW="container.xl" py={8}>
+            <PageContainer>
                 <Text>
                     {`These are companies I have had the privilege of working with either as an investor or advisor over the years.
                     Please feel free to reach out if you'd like to get in touch with any of them.`}
@@ -43,7 +44,7 @@ export default function Page() {
                 <Accordion allowToggle={true} paddingTop={'1rem'} paddingBottom={'3rem'}>
                     {companyLinks}
                 </Accordion>
-            </Container>
+            </PageContainer>
         </div>
     )
 }
