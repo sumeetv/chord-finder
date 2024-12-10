@@ -119,6 +119,13 @@ export const CompanyList: Company[] = [
             has earned the trust of over 50,000 nurses.`
     },
     {
+        name: 'Perry',
+        url: 'https://www.joinperry.com/',
+        desc: `Built by data scientists, Perry improves employee productivity, quality of work,
+            word-of-mouth referrals and loyalty through performance-tied incentives. Perry's platform
+            uses AI to reward employees for good actions on the job, boosting revenue and cutting costs.`,
+    },
+    {
         name: 'QA Wolf',
         url: 'https://www.qawolf.com/',
         desc:
