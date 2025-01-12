@@ -40,6 +40,14 @@ export const CompanyList: Company[] = [
             collaborate, manage projects, and focus on getting work done.`
     },
     {
+        name: 'Comfy Org',
+        url: 'https://www.comfy.org/',
+        desc:
+            `Comfy is building the most powerful open source node-based application for creating
+            images, videos, and audio with GenAI starting with ComfyUI and best-in-class extensions
+            for modern workflows.`
+    },
+    {
         name: 'Cycle',
         url: 'https://www.cycle.app/',
         desc:
@@ -108,15 +116,6 @@ export const CompanyList: Company[] = [
             prenup process, providing access to a vetted legal marketplace of trusted
             lawyers. Neptune makes the process efficient and cost-effective, allowing couples
             to focus on their relationship and wedding plans.`
-    },
-    {
-        name: 'Nursewallet',
-        url: 'https://www.nursewallet.co/',
-        desc:
-            `Nursewallet provides nurses with a comprehensive financial management system designed to
-            address the unique complexities nurses face in an evolving healthcare system. With built
-            in shift management tools, automated investing, and personalized spending plans, Nursewallet
-            has earned the trust of over 50,000 nurses.`
     },
     {
         name: 'Perry',
