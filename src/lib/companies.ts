@@ -65,14 +65,6 @@ export const CompanyList: Company[] = [
             Detail lets engineers focus on building while keeping businesses focused.`
     },
     {
-        name: 'Dromo',
-        url: 'https://dromo.io/',
-        desc:
-            `Dromo simplifies uploading and validating data files, significantly reduces
-            onboarding errors and support tickets, and lets teams focus on core features
-            instead of worrying about their data importing pipelines.`
-    },
-    {
         name: 'Maverick',
         url: 'https://www.trymaverick.com/',
         desc:
