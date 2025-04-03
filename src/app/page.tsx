@@ -1,25 +1,35 @@
 'use client'
 
-import { Box, Flex, Heading, Image } from "@chakra-ui/react";
+import React from "react";
+import { Provider } from "react-redux";
 
-export default function Home() {
+import ChordBoard from "@/components/chord-selector/chord-board";
+import ScaleBoard from "@/components/chord-selector/scale-board";
+
+import store from "@/redux/store";
+import "./chord-finder.css";
+import { Heading, Text } from "@chakra-ui/react";
+
+const ChordFinderPage = () => {
+
     return (
-        <main>
-            <Flex paddingTop={'1rem'} alignItems='center'>
-                <Box minWidth={'30%'}>
-                    <Image
-                        borderRadius={`10px`}
-                        aspectRatio={1}
-                        src={'/headshot.png'}
-                        alt="Headshot of Sumeet Vaidya (sumeetv)"
-                    />
-                </Box>
-                <Heading size='lg' fontFamily={'monospace'} paddingLeft={'1rem'}>
-                    {`...is the co-founder and CEO of Crafting and an active angel investor.
-                    Previously, he scaled enterprise integrations, social products, dev
-                    platforms, and more at Discord, Uber, and Meta.`}
-                </Heading>
-            </Flex>
-        </main>
+        <Provider store={store}>
+            <Heading>Chord Finder</Heading>
+            <Text>
+                Select frets on either fretboard to see what chords or scales match your selection.
+                You can also select a chord or scale from the dropdowns to highlight all corresponding
+                notes.
+            </Text>
+            <Heading size="md">
+                Chord Selector
+            </Heading>
+            <ChordBoard />
+            <Heading size="md">
+                Scale Selector
+            </Heading>
+            <ScaleBoard />
+        </Provider>
     );
-}
+};
+
+export default ChordFinderPage;
