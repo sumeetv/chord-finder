@@ -1,9 +1,4 @@
-This is my personal site for hosting information about companies I've invested in, random blog posts, projects I tinker with,
-and whatever else I might want to do in the future. Current plans are to add some career information and deeper insight into
-my investing philosophy / how I engage with companies.
-
-This is built on Next.js in TypeScript using the App router architecture with Chakra UI as the base component library. It is
-currently deployed on Vercel at www.sumeetv.com
+This is a toy app for finding chords and scales on a guitar that initially was part of my old personal site. I removed all the extra cruft and forked it to have a simplified page I can link to.
 
 Quick commands
 ```bash
