@@ -1,7 +1,9 @@
-import { extendTheme } from '@chakra-ui/react'
-import { defaultFont, headerFont } from './font'
+import { extendTheme } from "@chakra-ui/react";
+import { defaultFont, headerFont } from "./font";
 
 const theme = extendTheme({
+  config: { initialColorMode: "dark", useSystemColorMode: false },
+  styles: { global: { body: { bg: "#0B0F16", color: "#E8EDF5" } } },
   fonts: {
     heading: `${headerFont.style.fontFamily}, sans-serif`,
     body: `${defaultFont.style.fontFamily}, sans-serif`,
@@ -9,7 +11,7 @@ const theme = extendTheme({
   components: {
     Card: {
       variants: {
-        'with-shadow': {
+        "with-shadow": {
           container: {
             boxShadow: "md",
             transition: "all 0.1s ease-in-out",
@@ -29,6 +31,6 @@ const theme = extendTheme({
       },
     },
   },
-})
+});
 
-export default theme
+export default theme;

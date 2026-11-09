@@ -18,7 +18,6 @@ export function NotesForIntervals(rootNote: number, intervals: number): {[key: n
 
     for(let idx = 0; idx < NOTES.length; idx++) {
         if (intervals & (1 << idx)) {
-            console.log(idx, rootNote);
             const curNote = (idx + rootNote) % NOTES.length;
             returnedNotes[curNote] = true;
         }
