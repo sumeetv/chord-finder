@@ -1,9 +1,18 @@
-This is a toy app for finding chords and scales on a guitar that initially was part of my old personal site. I removed all the extra cruft and forked it to have a simplified page I can link to.
+An interactive guitar workbench for finding chords and scales from selected frets, with alternate tunings and preset exploration. Built with Next.js, React, and Chakra UI.
+
+The mobile interface shows six fret positions at a time; use the range arrows to explore the neck. Wide desktop layouts show open strings through fret 15. Chords and Scales retain independent selections. Changing tuning keeps your physical fret selections and recalculates their pitches. Clear and Undo apply to the current mode. Preset previews preserve your manual selection; use **Back to my notes** to return.
+
+The modernization roadmap, decisions, validation results, and resume instructions live in [MODERNIZATION_PLAN.md](MODERNIZATION_PLAN.md).
 
 Quick commands
 ```bash
+npm ci
 # run locally
 npm run dev
+# verify selection state and music matching
+npm test
 # run build script to test for errors
 npm run build
 ```
+
+The active interface is `src/components/guitar-workbench.tsx`; its authoritative selection model is `src/lib/chord-finder/workbench.ts`. Older chord-selector/Redux components remain in the repository but are no longer mounted by the main page. Three.js effects are a later roadmap milestone.
