@@ -15,4 +15,8 @@ npm test
 npm run build
 ```
 
-The active interface is `src/components/guitar-workbench.tsx`; its authoritative selection model is `src/lib/chord-finder/workbench.ts`. Older chord-selector/Redux components remain in the repository but are no longer mounted by the main page. Three.js effects are a later roadmap milestone.
+The active interface is `src/components/guitar-workbench.tsx`; its authoritative selection model is `src/lib/chord-finder/workbench.ts`. Older chord-selector/Redux components remain in the repository but are no longer mounted by the main page.
+
+Fret taps trigger brief Three.js string waves and note ripples. The effects load on fretboard interaction and stop rendering when settled, off-screen, or hidden. Controls and labels stay in the DOM and remain usable without WebGL. Open **Or explore a chord/scale** to toggle **Animated feedback**; the setting is saved locally and respects the device's reduced-motion preference.
+
+To verify a production build while a development server is running, use `CHORD_FINDER_DIST_DIR=.next-check npm run build`. The isolated output directory is ignored by Git.

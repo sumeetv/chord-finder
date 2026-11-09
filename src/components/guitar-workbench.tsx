@@ -1,6 +1,7 @@
 "use client";
 
-import { useMemo, useReducer, useState } from "react";
+import { useMemo, useReducer, useRef, useState } from "react";
+import { useFretboardEffects } from "./use-fretboard-effects";
 import type { CSSProperties, ReactNode, SVGProps } from "react";
 import {
   CHORDS,
@@ -101,6 +102,11 @@ export default function GuitarWorkbench() {
   const [intervalLabels, setIntervalLabels] = useState(false);
   const [showAll, setShowAll] = useState(false);
   const session = state.sessions[state.mode];
+  const neck = useRef<HTMLDivElement>(null);
+  const effects = useFretboardEffects(
+    neck,
+    `${state.mode}:${session.tuning}:${rangeStart}`,
+  );
   const isChords = state.mode === "chords";
   const singular = isChords ? "chord" : "scale";
   const definitions = isChords ? CHORDS : SCALES;
@@ -156,7 +162,7 @@ export default function GuitarWorkbench() {
   }
 
   return (
-    <div className="cf-workbench">
+    <div className="cf-workbench" data-motion={effects.enabled ? "on" : "off"}>
       <section className="cf-intro" aria-labelledby="workbench-title">
         <div>
           <p className="cf-eyebrow">BASIC PLAYGROUND</p>
@@ -164,7 +170,8 @@ export default function GuitarWorkbench() {
             Find your next <span>{singular}.</span>
           </h1>
           <p className="cf-subtitle">
-            Tap a few frets to get started, see what other chords or scales could fit, and see where you can go on the fretboard.
+            Tap a few frets to get started, see what other chords or scales
+            could fit, and see where you can go on the fretboard.
           </p>
         </div>
         <div className="cf-intro-art" aria-hidden="true">
@@ -261,7 +268,9 @@ export default function GuitarWorkbench() {
                 {noteIndices.length > 0 &&
                   ` · ${noteIndices.length} NOTE${noteIndices.length === 1 ? "" : "S"}`}
               </p>
-              <p className="cf-current-result">{summary}</p>
+              <p className="cf-current-result" key={summary}>
+                {summary}
+              </p>
             </div>
             {session.presetType && (
               <button
@@ -328,6 +337,10 @@ export default function GuitarWorkbench() {
 
           <div
             className="cf-neck"
+            ref={neck}
+            onPointerEnter={effects.warm}
+            onPointerDownCapture={effects.warm}
+            onFocusCapture={effects.warm}
             style={{ "--visible-frets": PAGE_SIZE } as CSSProperties}
           >
             <div className="cf-fret-numbers" aria-hidden="true">
@@ -386,9 +399,13 @@ export default function GuitarWorkbench() {
                         ].join(" ")}
                         aria-label={`String ${row + 1}, ${TUNINGS[session.tuning][string]}, ${fret === 0 ? "open" : `fret ${fret}`}, ${NOTES[pitch]}`}
                         aria-pressed={selected}
-                        onClick={() =>
-                          dispatch({ type: "toggle", string, fret })
-                        }
+                        onClick={(event) => {
+                          effects.strike(
+                            event.currentTarget,
+                            selected ? "violet" : root ? "amber" : "mint",
+                          );
+                          dispatch({ type: "toggle", string, fret });
+                        }}
                       >
                         <span className="cf-note-marker">
                           {intervalLabels
@@ -513,6 +530,28 @@ export default function GuitarWorkbench() {
               Choose a root and type to light up the neck. Your selected frets
               stay saved.
             </p>
+            <div className="cf-motion-control">
+              <div>
+                <span>Animated feedback</span>
+                <p id="cf-motion-help">
+                  {effects.reducedMotion
+                    ? "Using your device’s reduced-motion setting."
+                    : "Brief string waves and note ripples."}
+                </p>
+              </div>
+              <button
+                type="button"
+                role="switch"
+                aria-label="Animated feedback"
+                aria-describedby="cf-motion-help"
+                aria-checked={effects.enabled}
+                disabled={effects.reducedMotion}
+                onClick={effects.toggle}
+              >
+                <i aria-hidden="true" />
+                {effects.enabled ? "On" : "Off"}
+              </button>
+            </div>
           </details>
         </section>
 

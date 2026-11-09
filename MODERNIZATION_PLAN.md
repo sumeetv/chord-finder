@@ -33,11 +33,12 @@ Mobile: horizontal guitar orientation, approximately six frets at once, overlapp
 
 Done means: usable at 320–430px portrait widths, no horizontal page overflow, visible focus, comfortable fret targets, accurate results after duplicate pitches/tuning/undo/mode changes, and no layout jumps on selection.
 
-### 2. Tactile effects — follow-up
+### 2. Tactile effects — implemented; physical-phone evaluation pending
 
-- [ ] Refine spring feedback and result transitions after mobile validation.
-- [ ] Add a lazy-loaded Three.js visual layer for short string vibrations/ripples, retaining DOM interaction and labels.
-- [ ] Effects settle and stop rendering at rest, respect reduced motion, degrade gracefully without WebGL, and remain responsive on the user's phone.
+- [x] Refine spring feedback and result transitions after mobile validation.
+- [x] Add a lazy-loaded Three.js visual layer for short string vibrations/ripples, retaining DOM interaction and labels.
+- [x] Implement effects that settle to idle, stop off-screen/when hidden, respect reduced motion, and leave controls usable without WebGL.
+- [ ] Evaluate comfort and animation performance on the user's physical phone; OS reduced-motion and actual unavailable-WebGL paths still need device/browser emulation.
 
 ### 3. Optional enhancements — separate scope
 
@@ -57,28 +58,40 @@ Done means: usable at 320–430px portrait widths, no horizontal page overflow, 
 
 - Install with `npm ci` when dependencies are missing.
 - `npm run dev` for preview; `npm run build` for production validation; `npx tsc --noEmit` for type checking when installed.
-- `npm test` compiles the actual TypeScript music/state modules into a temporary directory and runs nine Node tests for duplicate pitches, tuning/undo, independent sessions, clear/undo, preset exit, C-major recognition across positions, all tunings, scale recognition, and guarded input/history bounds. No test dependency was added.
+- `npm test` compiles the actual TypeScript music/state modules into a temporary directory and runs thirteen Node tests for duplicate pitches, tuning/undo, independent sessions, clear/undo, preset exit, C-major recognition across positions, all tunings, scale recognition, guarded input/history bounds, and four animation-loop tests (coalescing frames, settling, cancellation/disposal, and restarting). No test dependency was added.
 - Manual/browser checks: portrait phone (320, 390, 430px), desktop, landscape, tuning change with selection, repeated pitches, range changes, independent modes, presets, result preview, keyboard, reduced motion.
 - Do not claim device performance or browser QA unless actually measured.
 
 ## Resume checkpoint
 
-Milestone 1 implemented on 2026-11-08. Milestones 2–3 remain open.
+Milestones 1 and 2 implemented on 2026-11-08. Physical-phone evaluation remains pending; milestone 3 is optional scope.
 
 - Active UI: `src/components/guitar-workbench.tsx`; responsive styles: `src/app/chord-finder.css`.
 - Follow-up: inset dropdown chevrons 12px from the right using a CSS SVG background and 36px text padding. Browser-checked desktop and 320px layouts and tuning selection. User copy edits retained.
 - Authoritative state: `src/lib/chord-finder/workbench.ts` with per-mode sessions and up to 50 undo snapshots. Selected physical positions derive pitch counts; tuning changes keep positions and recalculate pitches. Old Redux/chord-selector components remain available but are unmounted.
 - Phone ranges are 0–5, 4–9, 8–13, 10–15, with reversible navigation. At >=1100px, show all 16 positions. At >=1380px, show matches alongside the board; otherwise below it.
 - Exact/containing matches, missing-note hints, presets, back-to-manual selection, note/interval labels, clear/undo, and keyboard-operable buttons are implemented. Preset previews keep manual selections intact.
-- Device UI fonts replace network-loaded fonts. Dark theme, app identity/metadata, skip link, focus outlines, and CSS reduced-motion rules are implemented. No new runtime dependencies or lockfile changes.
-- Validation: all nine `npm test` cases pass. Production build passes, including Next's TypeScript/ESLint checks. `git diff --check` passes.
+- Device UI fonts replace network-loaded fonts. Dark theme, app identity/metadata, skip link, focus outlines, and CSS reduced-motion rules are implemented. Milestone 1 added no runtime dependencies; milestone 2 adds pinned `three@0.187.0` and development declarations `@types/three@0.187.0`, with the matching lockfile update.
+- Validation: all thirteen `npm test` cases pass. Production build passes, including Next's TypeScript/ESLint checks. `git diff --check` passes.
 - In-app browser checks: no horizontal page overflow at 320x740, 390x844, 430x932, 844x390, 1280x900, and 1440x1000. Fret targets measured at least 44.5x48px on the narrowest viewport; 96 visible targets on desktop, 36 on mobile.
 - Browser interactions verified: manual C/E/G -> C major; mode preservation; C-major scale preview; tuning E -> D with undo; clear/undo; Enter-key toggle; flat-root/minor preview; interval reference; bebop naming; containing-result preview and return; reversible navigation through fret 15.
 - Final production-browser check: short and long preset names leave the fretboard at the same vertical position (428.84px at 390px width); long summary text truncates visually while its full text remains available to assistive technology and in the result list. Final screenshots reflect the production build.
 - Browser error/warning log was empty. Reduced-motion CSS was inspected; OS motion preferences were not emulated. Physical-phone comfort, touch gestures, and sustained frame rates still need real-device evaluation.
-- Preview screenshots were saved outside Git in the current Codex visualization directory as `chord-finder-mobile.jpg` and `chord-finder-desktop.jpg`. Local preview servers are stopped at the end of work; run `npm run dev` to resume preview.
-- Both repositories were clean at initial inspection. Mobile foundation and user copy tweaks are being checkpointed on `codex/music-app-modernization` before milestone 2. No applicable AGENTS.md was found in repository roots or ancestor directories.
+- Screenshots are outside Git in the current Codex visualization directory: `chord-finder-mobile.jpg`, `chord-finder-desktop.jpg`, and `chord-finder-effects-mobile.jpg`. The user's existing dev server on port 3000 was retained. Only the owned production-QA server on 3001 was stopped. Inspect existing listeners before starting another preview.
+- Both repositories are on `codex/music-app-modernization`. Mobile foundation/user copy tweaks were committed in Chord Finder as `bf6f0ec`; Tonnetz's initial roadmap was committed as `f4450ab`. Milestone 2 is saved in a subsequent Chord Finder commit; inspect `git log --oneline -3` on resume. No applicable AGENTS.md was found in repository roots or ancestor directories.
 
-Next action: inspect `git status --short`, read this checkpoint, run `npm run dev`, review the mobile experience on the user's phone, then proceed to milestone 2 (lazy-loaded Three.js vibration/ripples and motion refinement). Keep core controls/labels in the DOM and stop rendering when effects settle. Tonnetz remains planning-only.
+### Milestone 2 implementation details
+
+- `src/components/use-fretboard-effects.ts` coordinates the persisted Animated feedback switch, live OS preference, deferred module import, generation guards for in-flight loads, visibility/intersection handling, and disposal.
+- `src/lib/chord-finder/fretboard-effects.ts` renders one transparent shader quad with up to six bounded 700ms impulses. A capped 1.5 pixel ratio, low-power WebGL2 context, no lights/textures/post-processing, and explicit GPU cleanup keep the layer small. No canvas is allocated before a fret activation. Unsupported WebGL or module-loading failure leaves the DOM instrument usable.
+- `src/lib/chord-finder/effects-loop.ts` schedules one frame at a time and stops when settled. Four added tests verify coalescing, idle state, stop/dispose, and restarting.
+- Spring note feedback and short result transitions use CSS transforms/opacity. Both the app preference and the OS reduced-motion rule disable decorative movement. Settings are inside the existing explore disclosure; no new navigation is needed.
+- Production browser QA: no canvas before input; exactly one after repeated taps; active -> idle after settling; range changes clear feedback; switching off removes the canvas and leaves note selection/matching usable; off preference persists through reload; switching on recreates a single canvas; keyboard Enter still toggles frets.
+- Production canvas checks after ResizeObserver settles: 292 CSS/buffer pixels at a 320px viewport, 330 at 390px, and 968 at 1440px (DPR 1). No page-wide overflow and pointer-events remain disabled on the canvas. Real-device frame rates were not measured.
+- Final production checks had no new console warnings/errors. During implementation, adding hook calls caused a development Fast Refresh reload; a fresh production page passed the behavior checks.
+- `CHORD_FINDER_DIST_DIR=.next-check npm run build` isolates build output from a running dev server. This directory is ignored; its generated types are included by TypeScript. The final production report shows a 93.9kB first load; Three.js is in a deferred chunk.
+- Renderer references: https://threejs.org/docs/pages/WebGLRenderer.html and https://nextjs.org/docs/app/api-reference/config/next-config-js/distDir.
+
+Next action: inspect branch/status/log, read this checkpoint, review the experience on the user's phone, and address concrete feedback. Tonnetz's topology/responsive foundation is the next planned app milestone; see the sibling plan. Optional audio/saving/custom-tuning work remains separate scope.
 
 Keep this file current before ending work. Do not discard existing edits or assume unchecked later phases are complete.

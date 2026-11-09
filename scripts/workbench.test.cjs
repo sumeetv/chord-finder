@@ -14,6 +14,7 @@ execFileSync(
     "src/lib/chord-finder/workbench.ts",
     "src/lib/chord-finder/chord.ts",
     "src/lib/chord-finder/scale.ts",
+    "src/lib/chord-finder/effects-loop.ts",
     "--outDir",
     output,
     "--target",
@@ -39,9 +40,123 @@ const { ScalesForNotes, NotesForScale } = require(
 );
 const NOTES = require(path.join(output, "notes.js")).default;
 const TUNINGS = require(path.join(output, "tunings.js")).default;
+const { createEffectsLoop } = require(path.join(output, "effects-loop.js"));
 const reduce = (state, ...actions) => actions.reduce(workbenchReducer, state);
 const toggle = (string, fret) => ({ type: "toggle", string, fret });
 const counts = (state) => selectedNoteCounts(state.sessions[state.mode]);
+
+function frameClock() {
+  let id = 0;
+  const pending = new Map();
+  return {
+    scheduler: {
+      request(callback) {
+        pending.set(++id, callback);
+        return id;
+      },
+      cancel(frame) {
+        pending.delete(frame);
+      },
+    },
+    get pending() {
+      return pending.size;
+    },
+    tick(time) {
+      const callbacks = [...pending.values()];
+      pending.clear();
+      callbacks.forEach((callback) => callback(time));
+    },
+    get callback() {
+      return [...pending.values()][0];
+    },
+  };
+}
+
+test("rapid effect requests share one frame and rendering stops when settled", () => {
+  const clock = frameClock();
+  let renders = 0,
+    clears = 0;
+  const loop = createEffectsLoop(
+    clock.scheduler,
+    () => ++renders < 3,
+    () => clears++,
+  );
+  for (let index = 0; index < 20; index++) loop.wake();
+  assert.equal(clock.pending, 1);
+  clock.tick(16);
+  assert.equal(clock.pending, 1);
+  clock.tick(32);
+  clock.tick(48);
+  assert.equal(renders, 3);
+  assert.equal(clears, 1);
+  assert.equal(clock.pending, 0);
+  clock.tick(64);
+  assert.equal(renders, 3);
+});
+
+test("stopping effects cancels pending rendering and clears feedback immediately", () => {
+  const clock = frameClock();
+  let renders = 0,
+    clears = 0;
+  const loop = createEffectsLoop(
+    clock.scheduler,
+    () => {
+      renders++;
+      return true;
+    },
+    () => clears++,
+  );
+  loop.wake();
+  loop.stop();
+  assert.equal(clock.pending, 0);
+  assert.equal(clears, 1);
+  clock.tick(16);
+  assert.equal(renders, 0);
+  loop.wake();
+  clock.tick(32);
+  assert.equal(renders, 1);
+  loop.dispose();
+});
+
+test("disposed effects ignore late callbacks and cannot restart", () => {
+  const clock = frameClock();
+  let renders = 0;
+  const loop = createEffectsLoop(
+    clock.scheduler,
+    () => {
+      renders++;
+      return true;
+    },
+    () => {},
+  );
+  loop.wake();
+  const lateCallback = clock.callback;
+  loop.dispose();
+  lateCallback(16);
+  loop.wake();
+  assert.equal(clock.pending, 0);
+  assert.equal(renders, 0);
+});
+
+test("a settled effect can wake again without an idle animation loop", () => {
+  const clock = frameClock();
+  const times = [];
+  const loop = createEffectsLoop(
+    clock.scheduler,
+    (time) => {
+      times.push(time);
+      return false;
+    },
+    () => {},
+  );
+  loop.wake();
+  clock.tick(16);
+  assert.equal(clock.pending, 0);
+  loop.wake();
+  clock.tick(1000);
+  assert.deepEqual(times, [16, 1000]);
+  assert.equal(clock.pending, 0);
+});
 
 test("duplicate E pitches remain selected when one physical fret is removed", () => {
   let state = reduce(createWorkbenchState(), toggle(0, 0), toggle(5, 0));
