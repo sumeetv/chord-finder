@@ -2,13 +2,15 @@
 
 Last updated: 2026-11-08 (America/Los_Angeles).
 
+Status: core UI and Three.js implementation complete; all 23 automated tests and the production build pass. The remaining core acceptance item is hands-on comfort/performance testing on the user's physical phone. Optional enhancements remain future scope.
+
 ## User decisions and authorization
 
 - Refresh this existing repository locally. Save a durable plan in each music-app repository, then start Chord Finder's mobile refresh.
 - Shared identity with `../tonnetz-graph`: dark, polished music tools with restrained neon accents.
 - Prioritize UI and interaction improvements; keep larger music features and architecture upgrades optional.
 - Primarily a personal tool, used on both desktop and phone. Phone use while holding a guitar is a first-class workflow.
-- User authorized committing the refresh and copy tweaks on a new branch, then proceeding with milestone 2. No publication, deployment, or dependency-wide migration requested.
+- User authorized committing the refresh and copy tweaks on a new branch, proceeding with the Chord Finder plan, and committing the subsequent changes. The latest explicit scope is to finish and verify the core refresh only; optional enhancements are deferred. No publication, deployment, or dependency-wide migration requested.
 
 ## Design direction
 
@@ -38,7 +40,8 @@ Done means: usable at 320–430px portrait widths, no horizontal page overflow, 
 - [x] Refine spring feedback and result transitions after mobile validation.
 - [x] Add a lazy-loaded Three.js visual layer for short string vibrations/ripples, retaining DOM interaction and labels.
 - [x] Implement effects that settle to idle, stop off-screen/when hidden, respect reduced motion, and leave controls usable without WebGL.
-- [ ] Evaluate comfort and animation performance on the user's physical phone; OS reduced-motion and actual unavailable-WebGL paths still need device/browser emulation.
+- [x] Automate reduced-motion and no-WebGL fallback checks, including live preference changes, saved settings, cancelled initialization, visibility, and resource cleanup.
+- [ ] Evaluate comfort and animation performance on the user's physical phone. Simulated DOM checks do not measure real GPU frame rates or native mobile touch behavior.
 
 ### 3. Optional enhancements — separate scope
 
@@ -58,7 +61,7 @@ Done means: usable at 320–430px portrait widths, no horizontal page overflow, 
 
 - Install with `npm ci` when dependencies are missing.
 - `npm run dev` for preview; `npm run build` for production validation; `npx tsc --noEmit` for type checking when installed.
-- `npm test` compiles the actual TypeScript music/state modules into a temporary directory and runs thirteen Node tests for duplicate pitches, tuning/undo, independent sessions, clear/undo, preset exit, C-major recognition across positions, all tunings, scale recognition, guarded input/history bounds, and four animation-loop tests (coalescing frames, settling, cancellation/disposal, and restarting). No test dependency was added.
+- `npm test` runs thirteen Node tests for music/state/animation-loop behavior, then ten Vitest/React Testing Library/jsdom tests for reduced motion, unavailable/failed renderer initialization, saved preferences, in-flight loading cancellation, range changes, visibility, and unmount cleanup. The null-WebGL renderer test invokes the actual renderer factory with an unavailable context. Test tools are development dependencies only; versions are pinned for compatibility with the current Node environment.
 - Manual/browser checks: portrait phone (320, 390, 430px), desktop, landscape, tuning change with selection, repeated pitches, range changes, independent modes, presets, result preview, keyboard, reduced motion.
 - Do not claim device performance or browser QA unless actually measured.
 
@@ -72,7 +75,7 @@ Milestones 1 and 2 implemented on 2026-11-08. Physical-phone evaluation remains 
 - Phone ranges are 0–5, 4–9, 8–13, 10–15, with reversible navigation. At >=1100px, show all 16 positions. At >=1380px, show matches alongside the board; otherwise below it.
 - Exact/containing matches, missing-note hints, presets, back-to-manual selection, note/interval labels, clear/undo, and keyboard-operable buttons are implemented. Preset previews keep manual selections intact.
 - Device UI fonts replace network-loaded fonts. Dark theme, app identity/metadata, skip link, focus outlines, and CSS reduced-motion rules are implemented. Milestone 1 added no runtime dependencies; milestone 2 adds pinned `three@0.187.0` and development declarations `@types/three@0.187.0`, with the matching lockfile update.
-- Validation: all thirteen `npm test` cases pass. Production build passes, including Next's TypeScript/ESLint checks. `git diff --check` passes.
+- Validation: all 23 `npm test` cases pass (13 Node + 10 React/renderer checks). Production build passes, including Next's TypeScript/ESLint checks. `git diff --check` passes.
 - In-app browser checks: no horizontal page overflow at 320x740, 390x844, 430x932, 844x390, 1280x900, and 1440x1000. Fret targets measured at least 44.5x48px on the narrowest viewport; 96 visible targets on desktop, 36 on mobile.
 - Browser interactions verified: manual C/E/G -> C major; mode preservation; C-major scale preview; tuning E -> D with undo; clear/undo; Enter-key toggle; flat-root/minor preview; interval reference; bebop naming; containing-result preview and return; reversible navigation through fret 15.
 - Final production-browser check: short and long preset names leave the fretboard at the same vertical position (428.84px at 390px width); long summary text truncates visually while its full text remains available to assistive technology and in the result list. Final screenshots reflect the production build.
@@ -91,6 +94,15 @@ Milestones 1 and 2 implemented on 2026-11-08. Physical-phone evaluation remains 
 - Final production checks had no new console warnings/errors. During implementation, adding hook calls caused a development Fast Refresh reload; a fresh production page passed the behavior checks.
 - `CHORD_FINDER_DIST_DIR=.next-check npm run build` isolates build output from a running dev server. This directory is ignored; its generated types are included by TypeScript. The final production report shows a 93.9kB first load; Three.js is in a deferred chunk.
 - Renderer references: https://threejs.org/docs/pages/WebGLRenderer.html and https://nextjs.org/docs/app/api-reference/config/next-config-js/distDir.
+
+### Completion audit
+
+- The working tree was clean at the start of the latest request; the existing refresh and effects were already committed as `bf6f0ec` and `ad9cdbb`. No empty checkpoint commit was needed.
+- Added `tests/motion.test.tsx`, `tests/renderer-fallback.test.ts`, and `vitest.config.mts` to close the remaining automated motion/fallback checks. All hooks are exercised under React Strict Mode. Existing app copy and runtime source were unchanged during this audit.
+- Verified that reduced motion blocks renderer creation even with an enabled stored preference, live OS preference changes dispose active effects, missing/failed WebGL does not interrupt matching or cause repeated allocations, saved off/on preferences work, stale asynchronous initialization is cancelled, and hidden/off-screen/unmounted instruments clean up correctly.
+- Development-only test tools: Vitest 3.2.7, jsdom 26.1.0, React Testing Library 16.3.3. No additional client runtime dependency or bundle size change; production first-load report remains 93.9kB.
+- Aligned Node 20 declarations and the YAML test-tool peer; `npm ls --all` reports no dependency problems.
+- Core implementation and available automated/browser checks are complete. Physical-phone evaluation remains explicitly unchecked. Audio, saved shapes, left-handed layout, custom tunings, sharing, and shared Tonnetz definitions were labeled optional and have not been implemented.
 
 Next action: inspect branch/status/log, read this checkpoint, review the experience on the user's phone, and address concrete feedback. Tonnetz's topology/responsive foundation is the next planned app milestone; see the sibling plan. Optional audio/saving/custom-tuning work remains separate scope.
 
